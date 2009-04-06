@@ -166,8 +166,16 @@ int score_for_tiles(int n)
 	
 	for(y = 0; y < 12; y++)
 		for(x = 0; x < 9; x++)
-			if(tiles[x][y] && [tiles[x][y] state] && ([[self tilesConnectedTo:tiles[x][y]] count] > 1))
-				return NO;
+			if(tiles[x][y] && [tiles[x][y] state])
+			{
+				NSMutableArray * tc = [self tilesConnectedTo:tiles[x][y]];
+				if([tc count] > 1)
+				{
+					[tc release];
+					return NO;
+				}
+				[tc release];
+			}
 	
 	return YES;
 }
