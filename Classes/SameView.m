@@ -252,8 +252,7 @@ int score_for_tiles(int n)
 		[showAlert show];
 		[showAlert release];
 	}
-	
-	if([self gameCompleted])
+	else if([self gameCompleted])
 	{
 		UIAlertView *showAlert = [[UIAlertView alloc] initWithTitle:@"Game Completed!"
 															message:[NSString stringWithFormat:@"%d points", overallScore]
@@ -358,7 +357,7 @@ int score_for_tiles(int n)
 		for(y = 0; y < 12; y++)
 		{
 			//[tiles[realX][y] removeFromSuperview];
-			[tiles[realX][y] release];
+			//[tiles[realX][y] release];
 			tiles[realX][y] = nil;
 		}
 	
