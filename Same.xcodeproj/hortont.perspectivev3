@@ -277,7 +277,7 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>7</integer>
+									<integer>5</integer>
 									<integer>1</integer>
 									<integer>0</integer>
 								</array>
@@ -300,7 +300,7 @@
 							<real>185</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>2 34 1385 843 0 0 1440 878 </string>
+						<string>2 35 1385 843 0 0 1440 878 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -318,7 +318,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>354679BC0F89F06000A59C85</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>SameView.m</string>
+								<string>SameAppDelegate.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -326,22 +326,22 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>354679BD0F89F06000A59C85</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>SameView.m</string>
+										<string>SameAppDelegate.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>35AE5E3F0F8A3B50000B1D6B</string>
+										<string>35AE5EA60F8A3F27000B1D6B</string>
 										<key>history</key>
 										<array>
-											<string>35AE5CEB0F8A25EF000B1D6B</string>
 											<string>35AE5D090F8A2661000B1D6B</string>
-											<string>35AE5D990F8A2D90000B1D6B</string>
 											<string>35AE5DAC0F8A2DD9000B1D6B</string>
 											<string>35AE5DAE0F8A2DD9000B1D6B</string>
-											<string>35AE5DF10F8A36C2000B1D6B</string>
 											<string>35AE5E090F8A3756000B1D6B</string>
 											<string>35AE5E340F8A3B2B000B1D6B</string>
-											<string>35AE5E3E0F8A3B47000B1D6B</string>
+											<string>35AE5E610F8A3DBD000B1D6B</string>
+											<string>35AE5E920F8A3ED6000B1D6B</string>
+											<string>35AE5E970F8A3EFF000B1D6B</string>
+											<string>35AE5EA50F8A3F25000B1D6B</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -578,6 +578,15 @@
 											<string>35AE5E390F8A3B2B000B1D6B</string>
 											<string>35AE5E3A0F8A3B2B000B1D6B</string>
 											<string>35AE5E3B0F8A3B2B000B1D6B</string>
+											<string>35AE5E650F8A3DBD000B1D6B</string>
+											<string>35AE5E660F8A3DBD000B1D6B</string>
+											<string>35AE5E670F8A3DBD000B1D6B</string>
+											<string>35AE5E680F8A3DBD000B1D6B</string>
+											<string>35AE5E6D0F8A3DFB000B1D6B</string>
+											<string>35AE5E900F8A3EB3000B1D6B</string>
+											<string>35AE5E940F8A3ED6000B1D6B</string>
+											<string>35AE5E990F8A3EFF000B1D6B</string>
+											<string>35AE5E9A0F8A3EFF000B1D6B</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -593,7 +602,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {1178, 797}}</string>
 								<key>RubberWindowFrame</key>
-								<string>2 34 1385 843 0 0 1440 878 </string>
+								<string>2 35 1385 843 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -672,7 +681,7 @@
 										<key>Frame</key>
 										<string>{{10, 27}, {1178, -27}}</string>
 										<key>RubberWindowFrame</key>
-										<string>2 34 1385 843 0 0 1440 878 </string>
+										<string>2 35 1385 843 0 0 1440 878 </string>
 									</dict>
 									<key>Module</key>
 									<string>PBXBuildResultsModule</string>
@@ -893,7 +902,7 @@
 		<string>/Users/hortont/Desktop/Same/Same.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>2 34 1385 843 0 0 1440 878 </string>
+	<string>2 35 1385 843 0 0 1440 878 </string>
 	<key>WindowToolsV3</key>
 	<array>
 		<dict>
