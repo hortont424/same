@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "SameTile.h"
 
-@interface SameView : UIView
+@interface SameView : UIView <UIAlertViewDelegate>
 {
 	SameTile * tiles[9][12];
 	

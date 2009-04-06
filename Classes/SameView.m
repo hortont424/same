@@ -23,30 +23,35 @@ int score_for_tiles(int n)
 
 @implementation SameView
 
+- (void)initGame
+{
+	overallScore = 0;
+	lastTile = nil;
+	
+	int x, y;
+	for(y = 0; y < 12; y++)
+	{
+		for(x = 0; x < 9; x++)
+		{
+			SameTile * st = [[[SameTile alloc] initWithFrame:CGRectFromTilePosition(x, 11-y)] retain];
+			st.x = x;
+			st.y = y;
+			tiles[x][y] = st;
+			[self addSubview:st];
+		}
+	}
+	
+	valueLabel.text = @"";
+	scoreLabel.text = @"0 points";
+}
+
 - (id)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame])
 	{
 		self.backgroundColor = [UIColor blackColor];
 		
-		overallScore = 0;
-		lastTile = nil;
-		
-		int x, y;
-		for(y = 0; y < 12; y++)
-		{
-			for(x = 0; x < 9; x++)
-			{
-				SameTile * st = [[[SameTile alloc] initWithFrame:CGRectFromTilePosition(x, 11-y)] retain];
-				st.x = x;
-				st.y = y;
-				tiles[x][y] = st;
-				[self addSubview:st];
-			}
-		}
-		
 		valueLabel = [[UILabel alloc] initWithFrame:CGRectMake(160, 413, 160 - 16, 40)];
-		valueLabel.text = @"";
 		valueLabel.backgroundColor = [UIColor blackColor];
 		valueLabel.textColor = [UIColor whiteColor];
 		valueLabel.textAlignment = UITextAlignmentRight;
@@ -54,12 +59,13 @@ int score_for_tiles(int n)
 		[self addSubview:valueLabel];
 		
 		scoreLabel = [[UILabel alloc] initWithFrame:CGRectMake(16, 413, 160, 40)];
-		scoreLabel.text = @"0 points";
 		scoreLabel.backgroundColor = [UIColor blackColor];
 		scoreLabel.textColor = [UIColor whiteColor];
 		scoreLabel.textAlignment = UITextAlignmentLeft;
 		scoreLabel.font = [UIFont boldSystemFontOfSize:20];
 		[self addSubview:scoreLabel];
+		
+		[self initGame];
     }
     return self;
 }
@@ -154,6 +160,30 @@ int score_for_tiles(int n)
 	litTiles = [t copy];
 }
 
+- (BOOL)gameCompleted
+{
+	int x, y;
+	
+	for(y = 0; y < 12; y++)
+		for(x = 0; x < 9; x++)
+			if(tiles[x][y] && [tiles[x][y] state] && ([[self tilesConnectedTo:tiles[x][y]] count] > 1))
+				return NO;
+	
+	return YES;
+}
+
+- (BOOL)gameWon
+{
+	int x, y;
+	
+	for(y = 0; y < 12; y++)
+		for(x = 0; x < 9; x++)
+			if(tiles[x][y] && [tiles[x][y] state])
+				return NO;
+	
+	return YES;
+}
+
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
 	[self touchesMoved:touches withEvent:event];
@@ -201,6 +231,53 @@ int score_for_tiles(int n)
 			}
 		}
 	}
+	
+	if([self gameWon])
+	{
+		overallScore += 1000;
+		
+		UIAlertView *showAlert = [[UIAlertView alloc] initWithTitle:@"Game Won!"
+															message:[NSString stringWithFormat:@"%d points", overallScore]
+														   delegate:self
+												  cancelButtonTitle:nil
+												  otherButtonTitles:@"OK",nil];
+		[showAlert show];
+		[showAlert release];
+	}
+	
+	if([self gameCompleted])
+	{
+		UIAlertView *showAlert = [[UIAlertView alloc] initWithTitle:@"Game Completed!"
+															message:[NSString stringWithFormat:@"%d points", overallScore]
+														   delegate:self
+												  cancelButtonTitle:nil
+												  otherButtonTitles:@"OK",nil];
+		[showAlert show];
+		[showAlert release];
+	}
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+	// Remove remaining tiles
+	int x, y;
+	
+	for(y = 0; y < 12; y++)
+	{
+		for(x = 0; x < 9; x++)
+		{
+			// lol ugly as hell.
+			
+			@try {
+				[tiles[x][y] removeFromSuperview];
+				[tiles[x][y] release];
+				tiles[x][y] = nil;
+			}
+			@catch (NSException * e) {}
+		}
+	}
+	
+	[self initGame];
 }
 
 - (void)removeTiles:(NSMutableArray*)t
@@ -271,7 +348,11 @@ int score_for_tiles(int n)
 	
 	for(; realX < 9; realX++)
 		for(y = 0; y < 12; y++)
+		{
+			//[tiles[realX][y] removeFromSuperview];
+			[tiles[realX][y] release];
 			tiles[realX][y] = nil;
+		}
 	
 	litTiles = nil;
 	

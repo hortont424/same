@@ -15,6 +15,8 @@
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application
 {
+	srand(time(NULL));
+	
 	window = [[UIWindow alloc] initWithFrame:CGRectMake(0,0,320,480)];
 	SameView * sv = [[[SameView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]] retain];
 	sv.userInteractionEnabled = YES;
