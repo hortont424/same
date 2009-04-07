@@ -12,6 +12,7 @@
 @interface SameView : UIView <UIAlertViewDelegate>
 {
 	SameTile * tiles[9][12];
+	SameTile * allTiles[108];
 	
 	SameTile * lastTile;
 	

@@ -21,7 +21,7 @@
 		
 		state = YES;
 		visited = NO;
-		color = rand() % 4;
+		color = rand() % 2;//4;
 		
 		switch(color)
 		{
@@ -97,10 +97,25 @@
 
 - (void)animationDidStop:(CAAnimation *)theAnimation finished:(BOOL)flag
 {
-	if(theAnimation == fadeAnimation)
+	if(theAnimation == [self.layer animationForKey:@"fade"])
+	{
 		self.layer.opacity = 0.0;
-	else
+		[self.layer removeAnimationForKey:@"fade"];
+	}
+	
+	if(theAnimation == [self.layer animationForKey:@"out"])
+	{
+		[self.layer removeAnimationForKey:@"out"];
+		[self removeFromSuperview];
+	}
+	
+	if(theAnimation == [self.layer animationForKey:@"moveX"] ||
+	   theAnimation == [self.layer animationForKey:@"moveY"])
+	{
 		[self.layer setFrame:CGRectMake(globalNewPt.x - 16, globalNewPt.y - 16, self.frame.size.width, self.frame.size.height)];
+		[self.layer removeAnimationForKey:@"moveX"];
+		[self.layer removeAnimationForKey:@"moveY"];
+	}
 }
 
 - (void)light
@@ -123,6 +138,7 @@
 - (void)dealloc
 {
     [super dealloc];
+	[imageView release];
 }
 
 

@@ -29,6 +29,7 @@ int score_for_tiles(int n)
 	lastTile = nil;
 	
 	int x, y;
+	
 	for(y = 0; y < 12; y++)
 	{
 		for(x = 0; x < 9; x++)
@@ -37,6 +38,7 @@ int score_for_tiles(int n)
 			st.x = x;
 			st.y = y;
 			tiles[x][y] = st;
+			allTiles[y*9+x] = st;
 			[self addSubview:st];
 		}
 	}
@@ -269,7 +271,7 @@ int score_for_tiles(int n)
 	// Remove remaining tiles
 	int x, y;
 	
-	for(y = 0; y < 12; y++)
+	/*for(y = 0; y < 12; y++)
 	{
 		for(x = 0; x < 9; x++)
 		{
@@ -282,7 +284,26 @@ int score_for_tiles(int n)
 			}
 			@catch (NSException * e) {}
 		}
+	}*/
+	
+	for(UIView * view in self.subviews)
+	{
+		[view removeFromSuperview];
 	}
+	
+	for(y = 0; y < 12; y++)
+	{
+		for(x = 0; x < 9; x++)
+		{
+			SameTile * t = allTiles[y*9+x];
+			if(t)
+			{
+				[t release];
+				allTiles[y*9+x] = nil;
+			}
+		}
+	}
+	
 	
 	[self initGame];
 }
@@ -355,11 +376,7 @@ int score_for_tiles(int n)
 	
 	for(; realX < 9; realX++)
 		for(y = 0; y < 12; y++)
-		{
-			//[tiles[realX][y] removeFromSuperview];
-			//[tiles[realX][y] release];
 			tiles[realX][y] = nil;
-		}
 	
 	litTiles = nil;
 	

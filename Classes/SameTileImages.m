@@ -17,7 +17,6 @@
 	self = [super init];
 	if (self != nil)
 	{
-		NSLog(@"init shared images");
 		redImage = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"red" ofType:@"png"]];
 		blueImage = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"blue" ofType:@"png"]];
 		greenImage = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"green" ofType:@"png"]];
