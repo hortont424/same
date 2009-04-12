@@ -18,7 +18,7 @@
 	srand(time(NULL));
 	
 	window = [[UIWindow alloc] initWithFrame:CGRectMake(0,0,320,480)];
-	SameView * sv = [[[SameView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]] retain];
+	SameView * sv = [[SameView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]];
 	sv.userInteractionEnabled = YES;
 	window.userInteractionEnabled = YES;
 	[window addSubview:sv];

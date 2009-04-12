@@ -330,18 +330,18 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>35E755F10F8B07B400B02CE2</string>
+										<string>35BAE3EF0F8B0FC900DD8F7D</string>
 										<key>history</key>
 										<array>
 											<string>35AE5D090F8A2661000B1D6B</string>
-											<string>35AE5E920F8A3ED6000B1D6B</string>
 											<string>35AE5E970F8A3EFF000B1D6B</string>
 											<string>35E755710F8AFF0B00B02CE2</string>
 											<string>35E7557E0F8AFF9000B02CE2</string>
 											<string>35E755800F8AFF9000B02CE2</string>
-											<string>35E755EC0F8B07B400B02CE2</string>
-											<string>35E755ED0F8B07B400B02CE2</string>
-											<string>35E755EE0F8B07B400B02CE2</string>
+											<string>35E755F30F8B080500B02CE2</string>
+											<string>35E755FC0F8B09A400B02CE2</string>
+											<string>35E755FD0F8B09A400B02CE2</string>
+											<string>35BAE3EA0F8B0EAA00DD8F7D</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -354,30 +354,6 @@
 											<string>35AE5CF30F8A25EF000B1D6B</string>
 											<string>35AE5CF40F8A25EF000B1D6B</string>
 											<string>35AE5D9D0F8A2D90000B1D6B</string>
-											<string>35E755320F8AFB8800B02CE2</string>
-											<string>35E755410F8AFC7F00B02CE2</string>
-											<string>35E7554D0F8AFEA900B02CE2</string>
-											<string>35E7554E0F8AFEA900B02CE2</string>
-											<string>35E7554F0F8AFEA900B02CE2</string>
-											<string>35E755500F8AFEA900B02CE2</string>
-											<string>35E755510F8AFEA900B02CE2</string>
-											<string>35E755520F8AFEA900B02CE2</string>
-											<string>35E755530F8AFEA900B02CE2</string>
-											<string>35E755540F8AFEA900B02CE2</string>
-											<string>35E755550F8AFEA900B02CE2</string>
-											<string>35E755560F8AFEA900B02CE2</string>
-											<string>35E755730F8AFF0B00B02CE2</string>
-											<string>35E755740F8AFF0B00B02CE2</string>
-											<string>35E755830F8AFF9000B02CE2</string>
-											<string>35E755840F8AFF9000B02CE2</string>
-											<string>35E755850F8AFF9000B02CE2</string>
-											<string>35E755860F8AFF9000B02CE2</string>
-											<string>35E755870F8AFF9000B02CE2</string>
-											<string>35E755990F8B005900B02CE2</string>
-											<string>35E7559A0F8B005900B02CE2</string>
-											<string>35E755AB0F8B013E00B02CE2</string>
-											<string>35E755EF0F8B07B400B02CE2</string>
-											<string>35E755F00F8B07B400B02CE2</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -500,11 +476,11 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>35E755350F8AFB8900B02CE2</string>
+				<string>35BAE3C50F8B0D3600DD8F7D</string>
 				<string>1CA23ED40692098700951B8B</string>
-				<string>35E755360F8AFB8900B02CE2</string>
+				<string>35BAE3C60F8B0D3600DD8F7D</string>
 				<string>354679BC0F89F06000A59C85</string>
-				<string>35E755370F8AFB8900B02CE2</string>
+				<string>35BAE3C70F8B0D3600DD8F7D</string>
 				<string>1CA23EDF0692099D00951B8B</string>
 				<string>1CA23EE00692099D00951B8B</string>
 				<string>1CA23EE10692099D00951B8B</string>
@@ -651,13 +627,13 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>35E755380F8AFB8900B02CE2</string>
+				<string>35BAE3C80F8B0D3600DD8F7D</string>
 				<string>1CCC7628064C1048000F2A68</string>
 				<string>1CCC7629064C1048000F2A68</string>
-				<string>35E755390F8AFB8900B02CE2</string>
-				<string>35E7553A0F8AFB8900B02CE2</string>
-				<string>35E7553B0F8AFB8900B02CE2</string>
-				<string>35E7553C0F8AFB8900B02CE2</string>
+				<string>35BAE3C90F8B0D3600DD8F7D</string>
+				<string>35BAE3CA0F8B0D3600DD8F7D</string>
+				<string>35BAE3CB0F8B0D3600DD8F7D</string>
+				<string>35BAE3CC0F8B0D3600DD8F7D</string>
 				<string>354679BC0F89F06000A59C85</string>
 			</array>
 			<key>ToolbarConfiguration</key>
@@ -688,8 +664,8 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>35E755650F8AFED700B02CE2</string>
-		<string>35E755660F8AFED700B02CE2</string>
+		<string>35BAE3DB0F8B0E0E00DD8F7D</string>
+		<string>35BAE3DC0F8B0E0E00DD8F7D</string>
 		<string>/Users/hortont/Desktop/Same/Same.xcodeproj</string>
 	</array>
 	<key>WindowString</key>

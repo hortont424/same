@@ -124,12 +124,8 @@ int score_for_tiles(int n)
 	int x, y;
 	
 	for(y = 0; y < 12; y++)
-	{
 		for(x = 0; x < 9; x++)
-		{
 			tiles[x][y].visited = NO;
-		}
-	}
 	
 	return [self _tilesConnectedTo:tile];
 }
@@ -288,7 +284,8 @@ int score_for_tiles(int n)
 	
 	for(UIView * view in self.subviews)
 	{
-		[view removeFromSuperview];
+		if(view != valueLabel && view != scoreLabel)
+			[view removeFromSuperview];
 	}
 	
 	for(y = 0; y < 12; y++)
@@ -328,16 +325,13 @@ int score_for_tiles(int n)
 			continue;
 		
 		NSMutableArray * goodLights = [[NSMutableArray alloc] init];
-		NSMutableArray * badLights = [[NSMutableArray alloc] init];
 		
 		for(y = 0; y < 12; y++)
 		{
 			SameTile * tile = tiles[x][y];
 			
-			if(tile.state)
+			if(tile && tile.state)
 				[goodLights addObject:tile];
-			else
-				[badLights addObject:tile];
 		}
 		
 		y = 0;
@@ -345,15 +339,16 @@ int score_for_tiles(int n)
 		for(SameTile * tile in goodLights)
 			tiles[realX][y++] = tile;
 		
-		for(SameTile * tile in badLights)
-			tiles[realX][y++] = tile;
+		int savey=y;
+		
+		for(; y < 12; y++)
+			tiles[realX][y] = nil;
 		
 		[goodLights release];
-		[badLights release];
 		
 		BOOL emptyCol = YES;
 		
-		for(y = 0; y < 12; y++)
+		for(y = 0; y < savey; y++)
 		{
 			SameTile * tile = tiles[realX][y];
 			tile.x = realX;
