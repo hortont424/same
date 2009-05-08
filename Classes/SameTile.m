@@ -21,7 +21,7 @@
 		
 		state = YES;
 		visited = NO;
-		color = rand() % 2;//4;
+		color = rand() % 3;
 		
 		switch(color)
 		{
