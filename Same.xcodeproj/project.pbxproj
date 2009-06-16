@@ -12,6 +12,7 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
+		35E5968E0FE8359B00B0BC56 /* SameHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E5968C0FE8359B00B0BC56 /* SameHUD.m */; };
 		35F036400FB3E7DB005DF6FB /* SameTile.m in Sources */ = {isa = PBXBuildFile; fileRef = 35F0363B0FB3E7DB005DF6FB /* SameTile.m */; };
 		35F036410FB3E7DB005DF6FB /* SameTileImages.m in Sources */ = {isa = PBXBuildFile; fileRef = 35F0363D0FB3E7DB005DF6FB /* SameTileImages.m */; };
 		35F036420FB3E7DB005DF6FB /* SameView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35F0363F0FB3E7DB005DF6FB /* SameView.m */; };
@@ -32,6 +33,8 @@
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* Same_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Same_Prefix.pch; sourceTree = "<group>"; };
+		35E5968C0FE8359B00B0BC56 /* SameHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SameHUD.m; sourceTree = "<group>"; };
+		35E5968D0FE8359B00B0BC56 /* SameHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SameHUD.h; sourceTree = "<group>"; };
 		35F0363A0FB3E7DB005DF6FB /* SameTile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SameTile.h; sourceTree = "<group>"; };
 		35F0363B0FB3E7DB005DF6FB /* SameTile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SameTile.m; sourceTree = "<group>"; };
 		35F0363C0FB3E7DB005DF6FB /* SameTileImages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SameTileImages.h; sourceTree = "<group>"; };
@@ -69,6 +72,8 @@
 				35F0363B0FB3E7DB005DF6FB /* SameTile.m */,
 				35F0363C0FB3E7DB005DF6FB /* SameTileImages.h */,
 				35F0363D0FB3E7DB005DF6FB /* SameTileImages.m */,
+				35E5968C0FE8359B00B0BC56 /* SameHUD.m */,
+				35E5968D0FE8359B00B0BC56 /* SameHUD.h */,
 				35F0363E0FB3E7DB005DF6FB /* SameView.h */,
 				35F0363F0FB3E7DB005DF6FB /* SameView.m */,
 				1D3623240D0F684500981E51 /* SameAppDelegate.h */,
@@ -192,6 +197,7 @@
 				35F036400FB3E7DB005DF6FB /* SameTile.m in Sources */,
 				35F036410FB3E7DB005DF6FB /* SameTileImages.m in Sources */,
 				35F036420FB3E7DB005DF6FB /* SameView.m in Sources */,
+				35E5968E0FE8359B00B0BC56 /* SameHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

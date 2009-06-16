@@ -21,7 +21,7 @@
 		
 		state = YES;
 		visited = NO;
-		color = rand() % 3;
+		color = rand() % 1;
 		
 		switch(color)
 		{
@@ -33,7 +33,6 @@
 		}
 		
 		self.userInteractionEnabled = NO;
-		self.layer.opacity = 0.8;
 		self.opaque = NO;
 		self.backgroundColor = [UIColor clearColor];
 		
@@ -42,6 +41,15 @@
 		imageView.opaque = NO;
 		imageView.backgroundColor = [UIColor clearColor];
 		[self addSubview:imageView];
+		
+		CABasicAnimation * fin = [CABasicAnimation animationWithKeyPath:@"opacity"];
+		fin.duration = 0.5;
+		fin.fromValue = [NSNumber numberWithFloat:0.0];
+		fin.toValue = [NSNumber numberWithFloat:0.8];
+		fin.removedOnCompletion = NO;
+		fin.fillMode  = kCAFillModeForwards;
+		fin.delegate = self;
+		[self.layer addAnimation:fin forKey:@"fin"];
     }
     return self;
 }
@@ -65,6 +73,7 @@
 	
 	[self.layer addAnimation:outAnimation forKey:@"out"];
 	[self.layer addAnimation:fadeAnimation forKey:@"fade"];
+	[[self superview] animationStart];
 }
 
 - (void)hideTile
@@ -102,6 +111,13 @@
 	{
 		self.layer.opacity = 0.0;
 		[self.layer removeAnimationForKey:@"fade"];
+		[[self superview] animationDone];
+	}
+	
+	if(theAnimation == [self.layer animationForKey:@"fin"])
+	{
+		self.layer.opacity = 0.8;
+		[self.layer removeAnimationForKey:@"fin"];
 	}
 	
 	if(theAnimation == [self.layer animationForKey:@"out"])

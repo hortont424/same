@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "SameTile.h"
+#import "SameHUD.h"
 
 @interface SameView : UIView <UIAlertViewDelegate>
 {
@@ -21,6 +22,7 @@
 	int overallScore, animCount;
 	
 	UILabel * valueLabel, * scoreLabel;
+	SameHUD * hud;
 }
 
 - (void)removeTiles:(NSMutableArray*)t;
