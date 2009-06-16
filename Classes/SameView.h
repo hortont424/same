@@ -33,5 +33,9 @@
 - (BOOL)gameCompleted;
 - (BOOL)gameWon;
 
+- (void)initGame;
+
+- (void)dismissedHUD;
+
 @end
 
