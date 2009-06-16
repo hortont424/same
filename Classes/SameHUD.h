@@ -13,8 +13,12 @@
 {
 	UILabel * titleLabel, * scoreLabel;
 	UISegmentedControl * segmentedControl;
+	
+	id delegate;
 }
 
 - (void)showHUDWithPoints:(int)points gameWon:(int)won;
+
+@property (nonatomic,assign) id delegate;
 
 @end

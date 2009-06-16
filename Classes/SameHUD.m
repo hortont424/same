@@ -10,6 +10,8 @@
 
 @implementation SameHUD
 
+@synthesize delegate;
+
 void CGContextAddRoundedRect(CGContextRef c, CGRect rect, int corner_radius)
 {
 	int x_left = rect.origin.x;
@@ -156,7 +158,7 @@ void CGContextAddRoundedRect(CGContextRef c, CGRect rect, int corner_radius)
 {
 	if(theAnimation == [self.layer animationForKey:@"hide-fade"])
 	{
-		[[self superview] dismissedHUD];
+		[delegate dismissedHUD];
 	}
 }
 

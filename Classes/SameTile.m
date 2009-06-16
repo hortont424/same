@@ -33,6 +33,8 @@
 			default: colorImage = [[SameTileImages shared] redImage]; break;
 		}
 		
+		[colorImage retain];
+		
 		self.userInteractionEnabled = NO;
 		self.layer.opacity = 0.8;
 		self.opaque = NO;
