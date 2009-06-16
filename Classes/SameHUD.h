@@ -12,6 +12,7 @@
 @interface SameHUD : UIView
 {
 	UILabel * titleLabel, * scoreLabel;
+	UISegmentedControl * segmentedControl;
 }
 
 - (void)showHUDWithPoints:(int)points gameWon:(int)won;

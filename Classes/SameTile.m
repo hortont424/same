@@ -8,6 +8,7 @@
 
 #import "SameTile.h"
 #import "SameTileImages.h"
+#import "SameView.h"
 
 @implementation SameTile
 
@@ -21,7 +22,7 @@
 		
 		state = YES;
 		visited = NO;
-		color = rand() % 1;
+		color = rand() % 3;
 		
 		switch(color)
 		{
@@ -33,6 +34,7 @@
 		}
 		
 		self.userInteractionEnabled = NO;
+		self.layer.opacity = 0.8;
 		self.opaque = NO;
 		self.backgroundColor = [UIColor clearColor];
 		
@@ -41,15 +43,6 @@
 		imageView.opaque = NO;
 		imageView.backgroundColor = [UIColor clearColor];
 		[self addSubview:imageView];
-		
-		CABasicAnimation * fin = [CABasicAnimation animationWithKeyPath:@"opacity"];
-		fin.duration = 0.5;
-		fin.fromValue = [NSNumber numberWithFloat:0.0];
-		fin.toValue = [NSNumber numberWithFloat:0.8];
-		fin.removedOnCompletion = NO;
-		fin.fillMode  = kCAFillModeForwards;
-		fin.delegate = self;
-		[self.layer addAnimation:fin forKey:@"fin"];
     }
     return self;
 }
@@ -73,7 +66,7 @@
 	
 	[self.layer addAnimation:outAnimation forKey:@"out"];
 	[self.layer addAnimation:fadeAnimation forKey:@"fade"];
-	[[self superview] animationStart];
+	[(SameView*)[self superview] animationStart];
 }
 
 - (void)hideTile
@@ -101,7 +94,7 @@
 	
 	[self.layer addAnimation:moveXAnimation forKey:@"moveX"];
 	[self.layer addAnimation:moveYAnimation forKey:@"moveY"];
-	[[self superview] animationStart];
+	[(SameView*)[self superview] animationStart];
 	globalNewPt = pt;
 }
 
@@ -111,13 +104,7 @@
 	{
 		self.layer.opacity = 0.0;
 		[self.layer removeAnimationForKey:@"fade"];
-		[[self superview] animationDone];
-	}
-	
-	if(theAnimation == [self.layer animationForKey:@"fin"])
-	{
-		self.layer.opacity = 0.8;
-		[self.layer removeAnimationForKey:@"fin"];
+		[(SameView*)[self superview] animationDone];
 	}
 	
 	if(theAnimation == [self.layer animationForKey:@"out"])
@@ -132,7 +119,7 @@
 		[self.layer setFrame:CGRectMake(globalNewPt.x - 16, globalNewPt.y - 16, self.frame.size.width, self.frame.size.height)];
 		[self.layer removeAnimationForKey:@"moveX"];
 		[self.layer removeAnimationForKey:@"moveY"];
-		[[self superview] animationDone];
+		[(SameView*)[self superview] animationDone];
 	}
 }
 

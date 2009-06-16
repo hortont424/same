@@ -27,5 +27,11 @@
 
 - (void)removeTiles:(NSMutableArray*)t;
 
+- (void)animationStart;
+- (void)animationDone;
+
+- (BOOL)gameCompleted;
+- (BOOL)gameWon;
+
 @end
 

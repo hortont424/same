@@ -69,7 +69,7 @@ void CGContextAddRoundedRect(CGContextRef c, CGRect rect, int corner_radius)
 		[self addSubview:scoreLabel];
 		
 		NSArray *segmentTextContent = [NSArray arrayWithObjects:@"Play Again", nil];
-		UISegmentedControl* segmentedControl = [[UISegmentedControl alloc] initWithItems:segmentTextContent];
+		segmentedControl = [[UISegmentedControl alloc] initWithItems:segmentTextContent];
 		segmentedControl.frame = CGRectMake(15, frame.size.height - 60, frame.size.width - 30, 44);
 		segmentedControl.momentary = YES;
 		segmentedControl.selectedSegmentIndex = UISegmentedControlNoSegment;
@@ -77,6 +77,8 @@ void CGContextAddRoundedRect(CGContextRef c, CGRect rect, int corner_radius)
 		segmentedControl.segmentedControlStyle = UISegmentedControlStyleBordered;
 		[segmentedControl addTarget:self action:@selector(hideHUD:) forControlEvents:UIControlEventValueChanged];
 		[self addSubview:segmentedControl];
+		
+		self.hidden = YES;
     }
     return self;
 }
@@ -100,6 +102,8 @@ void CGContextAddRoundedRect(CGContextRef c, CGRect rect, int corner_radius)
 {
 	titleLabel.text = won ? @"Game Won!" : @"Game Over!";
 	scoreLabel.text = [NSString stringWithFormat:@"%d points", points];
+	
+	self.hidden = NO;
 	
 	CABasicAnimation * outAnimation = [CABasicAnimation animationWithKeyPath:@"transform"];
 	outAnimation.duration = 0.7;
@@ -159,6 +163,15 @@ void CGContextAddRoundedRect(CGContextRef c, CGRect rect, int corner_radius)
 
 - (void)dealloc
 {
+	[titleLabel removeFromSuperview];
+	[titleLabel release];
+	
+	[scoreLabel removeFromSuperview];
+	[scoreLabel release];
+	
+	[segmentedControl removeFromSuperview];
+	[segmentedControl release];
+	
 	[super dealloc];
 }
 

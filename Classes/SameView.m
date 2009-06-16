@@ -29,6 +29,33 @@ int score_for_tiles(int n)
 	
 	if(animCount == 0 && (([self gameWon] || [self gameCompleted]) && !hud))
 	{
+		// Remove remaining tiles
+		int x, y;
+
+		for(UIView * view in self.subviews)
+		{
+			if(view != valueLabel && view != scoreLabel)
+				[view removeFromSuperview];
+		}
+
+		for(y = 0; y < 12; y++)
+		{
+			for(x = 0; x < 9; x++)
+			{
+				@try
+				{
+					SameTile * t = allTiles[y*9+x];
+					if(t)
+					{
+						[t removeFromSuperview];
+						[t release];
+						allTiles[y*9+x] = nil;
+					}
+				}
+				@catch (NSException * e) {}
+			}
+		}
+		
 		CGRect hudTop = CGRectFromTilePosition(0, 0);
 		CGRect hudBottom = CGRectFromTilePosition(8, 11);
 		CGRect hudRect = CGRectMake(hudTop.origin.x, hudTop.origin.y,
@@ -52,6 +79,8 @@ int score_for_tiles(int n)
 		{
 			[hud showHUDWithPoints:overallScore gameWon:NO];
 		}
+		
+		[self initGame];
 	}
 }
 
@@ -77,12 +106,47 @@ int score_for_tiles(int n)
 			tiles[x][y] = st;
 			allTiles[y*9+x] = st;
 			[self addSubview:st];
+			st.hidden = YES;
 			animCount = 0;
 		}
 	}
 	
 	valueLabel.text = @"";
 	scoreLabel.text = @"0 points";
+
+}
+
+- (void)showGame
+{
+	int x, y;
+	
+	self.layer.opacity = 0.0;
+	
+	CABasicAnimation * fin = [CABasicAnimation animationWithKeyPath:@"opacity"];
+	fin.duration = 1.0;
+	fin.fromValue = [NSNumber numberWithFloat:0.0];
+	fin.toValue = [NSNumber numberWithFloat:1.0];
+	fin.removedOnCompletion = NO;
+	fin.fillMode  = kCAFillModeForwards;
+	fin.delegate = self;
+	[self.layer addAnimation:fin forKey:@"fin"];
+	
+	for(y = 0; y < 12; y++)
+	{
+		for(x = 0; x < 9; x++)
+		{
+			allTiles[y*9+x].hidden = NO;
+		}
+	}
+}
+
+- (void)animationDidStop:(CAAnimation *)theAnimation finished:(BOOL)flag
+{
+	if(theAnimation == [self.layer animationForKey:@"fin"])
+	{
+		self.layer.opacity = 1.0;
+		[self.layer removeAnimationForKey:@"fin"];
+	}
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -106,6 +170,7 @@ int score_for_tiles(int n)
 		[self addSubview:scoreLabel];
 		
 		[self initGame];
+		[self showGame];
     }
     return self;
 }
@@ -289,35 +354,7 @@ int score_for_tiles(int n)
 	[hud release];
 	hud = nil;
 	
-	// Remove remaining tiles
-	int x, y;
-	
-	for(UIView * view in self.subviews)
-	{
-		if(view != valueLabel && view != scoreLabel)
-			[view removeFromSuperview];
-	}
-	
-	for(y = 0; y < 12; y++)
-	{
-		for(x = 0; x < 9; x++)
-		{
-			@try
-			{
-				SameTile * t = allTiles[y*9+x];
-				if(t)
-				{
-					[t removeFromSuperview];
-					[t release];
-					allTiles[y*9+x] = nil;
-				}
-			}
-			@catch (NSException * e) {}
-		}
-	}
-	
-	
-	[self initGame];
+	[self showGame];
 }
 
 - (void)removeTiles:(NSMutableArray*)t
