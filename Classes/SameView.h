@@ -18,7 +18,7 @@
 	
 	NSMutableArray * litTiles;
 	
-	int overallScore;
+	int overallScore, animCount;
 	
 	UILabel * valueLabel, * scoreLabel;
 }

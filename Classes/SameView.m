@@ -23,6 +23,16 @@ int score_for_tiles(int n)
 
 @implementation SameView
 
+- (void)animationDone
+{
+	animCount--;
+}
+
+- (void)animationStart
+{
+	animCount++;
+}
+
 - (void)initGame
 {
 	overallScore = 0;
@@ -34,12 +44,13 @@ int score_for_tiles(int n)
 	{
 		for(x = 0; x < 9; x++)
 		{
-			SameTile * st = [[[SameTile alloc] initWithFrame:CGRectFromTilePosition(x, 11-y)] retain];
+			SameTile * st = [[SameTile alloc] initWithFrame:CGRectFromTilePosition(x, 11-y)];
 			st.x = x;
 			st.y = y;
 			tiles[x][y] = st;
 			allTiles[y*9+x] = st;
 			[self addSubview:st];
+			animCount = 0;
 		}
 	}
 	
@@ -197,6 +208,9 @@ int score_for_tiles(int n)
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
+	if(animCount > 0)
+		return;
+	
 	UITouch * t = [touches anyObject];
 	int x, y;
 	
@@ -222,6 +236,9 @@ int score_for_tiles(int n)
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
+	if(animCount > 0)
+		return;
+	
 	UITouch * t = [touches anyObject];
 	int x, y;
 	
@@ -267,21 +284,6 @@ int score_for_tiles(int n)
 	// Remove remaining tiles
 	int x, y;
 	
-	/*for(y = 0; y < 12; y++)
-	{
-		for(x = 0; x < 9; x++)
-		{
-			// lol ugly as hell.
-			
-			@try {
-				[tiles[x][y] removeFromSuperview];
-				[tiles[x][y] release];
-				tiles[x][y] = nil;
-			}
-			@catch (NSException * e) {}
-		}
-	}*/
-	
 	for(UIView * view in self.subviews)
 	{
 		if(view != valueLabel && view != scoreLabel)
@@ -292,12 +294,17 @@ int score_for_tiles(int n)
 	{
 		for(x = 0; x < 9; x++)
 		{
-			SameTile * t = allTiles[y*9+x];
-			if(t)
+			@try
 			{
-				[t release];
-				allTiles[y*9+x] = nil;
+				SameTile * t = allTiles[y*9+x];
+				if(t)
+				{
+					[t removeFromSuperview];
+					[t release];
+					allTiles[y*9+x] = nil;
+				}
 			}
+			@catch (NSException * e) {}
 		}
 	}
 	
@@ -384,7 +391,34 @@ int score_for_tiles(int n)
 {
 }
 
-- (void)dealloc {
+- (void)dealloc
+{
+	int x, y;
+	
+	for(y = 0; y < 12; y++)
+	{
+		for(x = 0; x < 9; x++)
+		{
+			// lol ugly as hell.
+			
+			@try
+			{
+				[tiles[x][y] removeFromSuperview];
+				[tiles[x][y] release];
+				tiles[x][y] = nil;
+			}
+			@catch (NSException * e) {}
+		}
+	}
+	
+	[valueLabel removeFromSuperview];
+	[valueLabel release];
+	
+	[scoreLabel removeFromSuperview];
+	[scoreLabel release];
+	
+	[litTiles release];
+	
     [super dealloc];
 }
 

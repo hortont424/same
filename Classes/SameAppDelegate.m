@@ -9,6 +9,8 @@
 #import "SameAppDelegate.h"
 #import "SameView.h"
 
+#import "SameTile.h" // temporary
+
 @implementation SameAppDelegate
 
 @synthesize window;
@@ -22,6 +24,7 @@
 	sv.userInteractionEnabled = YES;
 	window.userInteractionEnabled = YES;
 	[window addSubview:sv];
+
     [window makeKeyAndVisible];
 }
 

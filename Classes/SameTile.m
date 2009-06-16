@@ -92,6 +92,7 @@
 	
 	[self.layer addAnimation:moveXAnimation forKey:@"moveX"];
 	[self.layer addAnimation:moveYAnimation forKey:@"moveY"];
+	[[self superview] animationStart];
 	globalNewPt = pt;
 }
 
@@ -115,6 +116,7 @@
 		[self.layer setFrame:CGRectMake(globalNewPt.x - 16, globalNewPt.y - 16, self.frame.size.width, self.frame.size.height)];
 		[self.layer removeAnimationForKey:@"moveX"];
 		[self.layer removeAnimationForKey:@"moveY"];
+		[[self superview] animationDone];
 	}
 }
 
@@ -137,8 +139,10 @@
 
 - (void)dealloc
 {
-    [super dealloc];
+	[imageView removeFromSuperview];
 	[imageView release];
+	
+	[super dealloc];
 }
 
 
