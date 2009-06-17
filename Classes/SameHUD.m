@@ -23,29 +23,17 @@ void CGContextAddRoundedRect(CGContextRef c, CGRect rect, int corner_radius)
 	int y_bottom_center = rect.origin.y + rect.size.height - corner_radius;
 	int y_bottom = rect.origin.y + rect.size.height;
 	
-	/* Begin! */
 	CGContextBeginPath(c);
 	CGContextMoveToPoint(c, x_left, y_top_center);
-	
-	/* First corner */
 	CGContextAddArcToPoint(c, x_left, y_top, x_left_center, y_top, corner_radius);
 	CGContextAddLineToPoint(c, x_right_center, y_top);
-	
-	/* Second corner */
 	CGContextAddArcToPoint(c, x_right, y_top, x_right, y_top_center, corner_radius);
 	CGContextAddLineToPoint(c, x_right, y_bottom_center);
-	
-	/* Third corner */
 	CGContextAddArcToPoint(c, x_right, y_bottom, x_right_center, y_bottom, corner_radius);
 	CGContextAddLineToPoint(c, x_left_center, y_bottom);
-	
-	/* Fourth corner */
 	CGContextAddArcToPoint(c, x_left, y_bottom, x_left, y_bottom_center, corner_radius);
 	CGContextAddLineToPoint(c, x_left, y_top_center);
-	
-	/* Done */
 	CGContextClosePath(c);
-	
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -70,9 +58,17 @@ void CGContextAddRoundedRect(CGContextRef c, CGRect rect, int corner_radius)
 		scoreLabel.text = @"Game Won!";
 		[self addSubview:scoreLabel];
 		
-		NSArray *segmentTextContent = [NSArray arrayWithObjects:@"Play Again", nil];
+		hsLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 100, frame.size.width, 40)];
+		hsLabel.backgroundColor = [UIColor clearColor];
+		hsLabel.textColor = [UIColor whiteColor];
+		hsLabel.textAlignment = UITextAlignmentCenter;
+		hsLabel.font = [UIFont boldSystemFontOfSize:14];
+		hsLabel.text = @"HIGH SCORES";
+		[self addSubview:hsLabel];
+		
+		NSArray * segmentTextContent = [NSArray arrayWithObjects:@"Play Again", nil];
 		segmentedControl = [[UISegmentedControl alloc] initWithItems:segmentTextContent];
-		segmentedControl.frame = CGRectMake(15, frame.size.height - 60, frame.size.width - 30, 44);
+		segmentedControl.frame = CGRectMake(15, frame.size.height - 58, frame.size.width - 30, 44);
 		segmentedControl.momentary = YES;
 		segmentedControl.selectedSegmentIndex = UISegmentedControlNoSegment;
 		segmentedControl.autoresizingMask = UIViewAutoresizingFlexibleWidth;
@@ -90,13 +86,43 @@ void CGContextAddRoundedRect(CGContextRef c, CGRect rect, int corner_radius)
 	CGContextRef context = UIGraphicsGetCurrentContext();
 	
 	CGRect drawRect = CGRectInset([self bounds], 10, 10);
+	CGRect scoresRect = CGRectMake(40, 100, 140, 130);
 	
 	CGContextSaveGState(context);
+	
+	CGContextAddRoundedRect(context, drawRect, 10);
+	CGContextClip(context);
+	
+	CGGradientRef myGradient;
+	CGColorSpaceRef myColorspace;
+	size_t num_locations = 2;
+	CGFloat locations[2] = { 0.0, 1.0 };
+	CGFloat components[8] = { 0.2, 0.2, 0.2, 1.0,  // Start color
+	                          0.0, 0.0, 0.0, 1.0 }; // End color
+
+	myColorspace = CGColorSpaceCreateDeviceRGB();
+	myGradient = CGGradientCreateWithColorComponents (myColorspace, components,
+	                          locations, num_locations);
+	
+	CGPoint myEndPoint;
+	myEndPoint.x = drawRect.origin.x;
+	myEndPoint.y = drawRect.origin.y + drawRect.size.height;
+	CGContextDrawLinearGradient(context, myGradient, drawRect.origin, myEndPoint, 0);
+	
+	CGContextRestoreGState(context);
+	
+	CGContextSaveGState(context);
+	
 	CGContextSetLineWidth(context, 2);
-	CGContextSetRGBFillColor(context, 0.0, 0.0, 0.0, 0.85);
 	CGContextSetRGBStrokeColor(context, 0.9, 0.9, 0.9, 0.5);
 	CGContextAddRoundedRect(context, drawRect, 10);
+	CGContextDrawPath(context, kCGPathStroke);
+	CGContextSetRGBFillColor(context, 0.0, 0.0, 0.0, 1.0);
+	CGContextSetRGBStrokeColor(context, 0.9, 0.9, 0.9, 0.3);
+	CGContextSetLineWidth(context, 1);
+	CGContextAddRoundedRect(context, scoresRect, 10);
 	CGContextDrawPath(context, kCGPathFillStroke);
+	
 	CGContextRestoreGState(context);
 }
 
@@ -104,6 +130,31 @@ void CGContextAddRoundedRect(CGContextRef c, CGRect rect, int corner_radius)
 {
 	titleLabel.text = won ? @"Game Won!" : @"Game Over!";
 	scoreLabel.text = [NSString stringWithFormat:@"%d points", points];
+	
+	
+	
+	
+	
+	NSMutableArray * scores = [[[UIApplication sharedApplication] delegate] scores];
+	int y = 0;
+	
+	for(NSNumber * score in scores)
+	{
+		UILabel * l = [[UILabel alloc] initWithFrame:CGRectMake(0, 130 + (18 * y), [self frame].size.width, 18)];
+		l.backgroundColor = [UIColor clearColor];
+		l.textColor = [UIColor whiteColor];
+		l.textAlignment = UITextAlignmentCenter;
+		l.font = [UIFont systemFontOfSize:14];
+		l.text = [NSString stringWithFormat:@"%d points", [score intValue]];
+		[self addSubview:l];
+		y++;
+	}
+	
+	
+	
+	
+	
+	
 	
 	self.hidden = NO;
 	
@@ -159,6 +210,7 @@ void CGContextAddRoundedRect(CGContextRef c, CGRect rect, int corner_radius)
 	if(theAnimation == [self.layer animationForKey:@"hide-fade"])
 	{
 		[delegate dismissedHUD];
+		[self.layer removeAllAnimations];
 	}
 }
 
@@ -171,11 +223,13 @@ void CGContextAddRoundedRect(CGContextRef c, CGRect rect, int corner_radius)
 	[scoreLabel removeFromSuperview];
 	[scoreLabel release];
 	
+	[hsLabel removeFromSuperview];
+	[hsLabel release];
+	
 	[segmentedControl removeFromSuperview];
 	[segmentedControl release];
 	
 	[super dealloc];
 }
-
 
 @end

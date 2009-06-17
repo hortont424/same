@@ -12,10 +12,11 @@
 
 @interface SameAppDelegate : NSObject <UIApplicationDelegate>
 {
-    UIWindow *window;
+	NSMutableArray * scores;
+    UIWindow * window;
 }
 
-@property (nonatomic, retain) IBOutlet UIWindow *window;
+@property (nonatomic, retain) IBOutlet UIWindow * window;
+@property (nonatomic, assign) NSMutableArray * scores;
 
 @end
-

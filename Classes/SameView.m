@@ -23,21 +23,18 @@ int score_for_tiles(int n)
 
 @implementation SameView
 
+int rcompare(NSNumber * a, NSNumber * b, void * context)
+{
+    return [b compare:a];
+}
+
 - (void)animationDone
 {
 	animCount--;
 	
 	if(animCount == 0 && (([self gameWon] || [self gameCompleted]) && !hud))
 	{
-		CGRect hudTop = CGRectFromTilePosition(0, 0);
-		CGRect hudBottom = CGRectFromTilePosition(8, 11);
-		CGRect hudRect = CGRectMake(hudTop.origin.x, hudTop.origin.y,
-		                            hudBottom.origin.x + hudBottom.size.width - 12,
-		                            hudBottom.origin.y + hudBottom.size.height - 12);
-	
-		hudRect = CGRectInset(hudRect, 50, 50);
-
-		hud = [[SameHUD alloc] initWithFrame:hudRect];
+		hud = [[SameHUD alloc] initWithFrame:CGRectInset([self bounds], 50, 75)];
 		hud.delegate = self;
 		[[self superview] addSubview:hud];
 		
@@ -46,13 +43,17 @@ int score_for_tiles(int n)
 			overallScore += 1000;
 			
 			scoreLabel.text = [NSString stringWithFormat:@"%d points", overallScore];
-
-			[hud showHUDWithPoints:overallScore gameWon:YES];
 		}
-		else if([self gameCompleted])
-		{
-			[hud showHUDWithPoints:overallScore gameWon:NO];
-		}
+		
+		NSMutableArray * scores = [[[UIApplication sharedApplication] delegate] scores];
+		
+		[scores addObject:[NSNumber numberWithInt:overallScore]];
+		[scores sortUsingFunction:&rcompare context:nil];
+		
+		if([scores count] > 5)
+			[scores removeLastObject];
+			
+		[hud showHUDWithPoints:overallScore gameWon:[self gameWon]];
 		
 		CABasicAnimation * fin = [CABasicAnimation animationWithKeyPath:@"opacity"];
 		fin.duration = 1.0;

@@ -308,7 +308,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>359036700FE8569600C40DF0</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>SameView.m</string>
+								<string>SameTile.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -316,17 +316,17 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>359036710FE8569600C40DF0</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>SameView.m</string>
+										<string>SameTile.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>359036F30FE85C9A00C40DF0</string>
+										<string>359038060FE8832F00C40DF0</string>
 										<key>history</key>
 										<array>
 											<string>359036890FE857DD00C40DF0</string>
-											<string>359036BB0FE8598D00C40DF0</string>
-											<string>359036E40FE85B9C00C40DF0</string>
-											<string>359036E50FE85B9C00C40DF0</string>
+											<string>359037A00FE874E000C40DF0</string>
+											<string>359037FD0FE8818F00C40DF0</string>
+											<string>359037FC0FE8818E00C40DF0</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -335,6 +335,7 @@
 											<string>3590368D0FE857DD00C40DF0</string>
 											<string>359036B80FE8598B00C40DF0</string>
 											<string>359036E60FE85B9C00C40DF0</string>
+											<string>359037A20FE874E000C40DF0</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -510,7 +511,7 @@
 						<key>Frame</key>
 						<string>{{0, 0}, {505, 136}}</string>
 						<key>RubberWindowFrame</key>
-						<string>883 33 505 498 0 0 1440 878 </string>
+						<string>862 39 505 498 0 0 1440 878 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXDebugCLIModule</string>
@@ -586,10 +587,10 @@
 							<key>Frame</key>
 							<string>{{246, 0}, {259, 153}}</string>
 							<key>RubberWindowFrame</key>
-							<string>883 33 505 498 0 0 1440 878 </string>
+							<string>862 39 505 498 0 0 1440 878 </string>
 						</dict>
 						<key>RubberWindowFrame</key>
-						<string>883 33 505 498 0 0 1440 878 </string>
+						<string>862 39 505 498 0 0 1440 878 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXDebugSessionModule</string>
@@ -654,7 +655,7 @@
 		<string>/Users/hortont/Code/Same/Same.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>883 33 505 498 0 0 1440 878 </string>
+	<string>862 39 505 498 0 0 1440 878 </string>
 	<key>WindowToolsV3</key>
 	<array>
 		<dict>
