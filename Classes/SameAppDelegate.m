@@ -24,6 +24,8 @@
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application
 {
+	UIImageView * im = [[UIImageView alloc] initWithImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Default" ofType:@"png"]]];
+	
 	NSString * path = [self pathForDataFile];
 	NSDictionary * rootObject;
 	
@@ -35,6 +37,8 @@
 		scores = [[NSMutableArray alloc] init];
 
 	window = [[UIWindow alloc] initWithFrame:CGRectMake(0,0,320,480)];
+	[window addSubview:im];
+	
 	SameView * sv = [[SameView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]];
 	sv.userInteractionEnabled = YES;
 	window.userInteractionEnabled = YES;

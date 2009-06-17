@@ -12,6 +12,7 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
+		353D22B80FE8CE7100664C1E /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 353D22B70FE8CE7100664C1E /* Default.png */; };
 		35E5968E0FE8359B00B0BC56 /* SameHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E5968C0FE8359B00B0BC56 /* SameHUD.m */; };
 		35F036400FB3E7DB005DF6FB /* SameTile.m in Sources */ = {isa = PBXBuildFile; fileRef = 35F0363B0FB3E7DB005DF6FB /* SameTile.m */; };
 		35F036410FB3E7DB005DF6FB /* SameTileImages.m in Sources */ = {isa = PBXBuildFile; fileRef = 35F0363D0FB3E7DB005DF6FB /* SameTileImages.m */; };
@@ -33,6 +34,7 @@
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* Same_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Same_Prefix.pch; sourceTree = "<group>"; };
+		353D22B70FE8CE7100664C1E /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		35E5968C0FE8359B00B0BC56 /* SameHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SameHUD.m; sourceTree = "<group>"; };
 		35E5968D0FE8359B00B0BC56 /* SameHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SameHUD.h; sourceTree = "<group>"; };
 		35F0363A0FB3E7DB005DF6FB /* SameTile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SameTile.h; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				353D22B70FE8CE7100664C1E /* Default.png */,
 				35F036560FB3EBDB005DF6FB /* same.png */,
 				35F0364B0FB3E852005DF6FB /* yellow.png */,
 				35F0364C0FB3E852005DF6FB /* green.png */,
@@ -182,6 +185,7 @@
 				35F036510FB3E852005DF6FB /* red.png in Resources */,
 				35F036520FB3E852005DF6FB /* blue.png in Resources */,
 				35F036570FB3EBDB005DF6FB /* same.png in Resources */,
+				353D22B80FE8CE7100664C1E /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
