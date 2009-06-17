@@ -11,7 +11,7 @@
 
 @interface SameHUD : UIView
 {
-	UILabel * titleLabel, * scoreLabel, * hsLabel;
+	UILabel * titleLabel, * scoreLabel, * hsLabel, * continueLabel;
 	UISegmentedControl * segmentedControl;
 	
 	id delegate;

@@ -66,19 +66,24 @@ void CGContextAddRoundedRect(CGContextRef c, CGRect rect, int corner_radius)
 		hsLabel.text = @"HIGH SCORES";
 		[self addSubview:hsLabel];
 		
-		NSArray * segmentTextContent = [NSArray arrayWithObjects:@"Play Again", nil];
-		segmentedControl = [[UISegmentedControl alloc] initWithItems:segmentTextContent];
-		segmentedControl.frame = CGRectMake(15, frame.size.height - 58, frame.size.width - 30, 44);
-		segmentedControl.momentary = YES;
-		segmentedControl.selectedSegmentIndex = UISegmentedControlNoSegment;
-		segmentedControl.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-		segmentedControl.segmentedControlStyle = UISegmentedControlStyleBordered;
-		[segmentedControl addTarget:self action:@selector(hideHUD:) forControlEvents:UIControlEventValueChanged];
-		[self addSubview:segmentedControl];
+		continueLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 250, frame.size.width, 40)];
+		continueLabel.backgroundColor = [UIColor clearColor];
+		continueLabel.textColor = [UIColor whiteColor];
+		continueLabel.textAlignment = UITextAlignmentCenter;
+		continueLabel.font = [UIFont boldSystemFontOfSize:18];
+		continueLabel.text = @"Tap to Continue";
+		[self addSubview:continueLabel];
 		
+		self.userInteractionEnabled = YES;
+				
 		self.hidden = YES;
     }
     return self;
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+	[self hideHUD:touches];
 }
 
 - (void)drawRect:(CGRect)rect
