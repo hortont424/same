@@ -10,7 +10,7 @@
 
 CGRect CGRectFromTilePosition(int x, int y)
 {
-	return CGRectMake(12+(x*33),12+(y*33),32,32);
+	return CGRectMake(12+(x*33),12+(y*33),33,33);
 }
 
 int score_for_tiles(int n)

@@ -22,7 +22,7 @@
 		
 		state = YES;
 		visited = NO;
-		color = rand() % 3;
+		color = rand() % 2;
 		
 		switch(color)
 		{
@@ -37,12 +37,12 @@
 		
 		self.userInteractionEnabled = NO;
 		self.layer.opacity = 0.8;
-		self.opaque = NO;
+		self.opaque = YES;
 		self.backgroundColor = [UIColor clearColor];
 		
 		imageView = [[UIImageView alloc] initWithImage:colorImage];
 		imageView.frame = CGRectMake(0,0,32,32);
-		imageView.opaque = NO;
+		imageView.opaque = YES;
 		imageView.backgroundColor = [UIColor clearColor];
 		[self addSubview:imageView];
     }
