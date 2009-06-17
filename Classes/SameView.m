@@ -128,6 +128,7 @@ int rcompare(NSNumber * a, NSNumber * b, void * context)
 	{
 		self.layer.opacity = 1.0;
 		[self.layer removeAnimationForKey:@"fin"];
+		[(id)[[UIApplication sharedApplication] delegate] removeImage];
 	}
 	
 	if(theAnimation == [self.layer animationForKey:@"fout"])

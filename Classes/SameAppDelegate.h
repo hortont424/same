@@ -14,9 +14,13 @@
 {
 	NSMutableArray * scores;
     UIWindow * window;
+	UIImageView * img;
 }
+
+- (void)removeImage;
 
 @property (nonatomic, retain) IBOutlet UIWindow * window;
 @property (nonatomic, assign) NSMutableArray * scores;
+@property (nonatomic, assign) UIImageView * img;
 
 @end

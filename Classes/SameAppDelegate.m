@@ -13,7 +13,7 @@
 
 @implementation SameAppDelegate
 
-@synthesize window, scores;
+@synthesize window, scores, img;
 
 - (NSString *)pathForDataFile
 {
@@ -24,7 +24,7 @@
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application
 {
-	UIImageView * im = [[UIImageView alloc] initWithImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Default" ofType:@"png"]]];
+	img = [[UIImageView alloc] initWithImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Default" ofType:@"png"]]];
 	
 	NSString * path = [self pathForDataFile];
 	NSDictionary * rootObject;
@@ -37,7 +37,7 @@
 		scores = [[NSMutableArray alloc] init];
 
 	window = [[UIWindow alloc] initWithFrame:CGRectMake(0,0,320,480)];
-	[window addSubview:im];
+	[window addSubview:img];
 	
 	SameView * sv = [[SameView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]];
 	sv.userInteractionEnabled = YES;
@@ -45,6 +45,16 @@
 	[window addSubview:sv];
 	
     [window makeKeyAndVisible];
+}
+
+- (void)removeImage
+{
+	if(img)
+	{
+		[img removeFromSuperview];
+		[img release];
+		img = nil;
+	}
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
