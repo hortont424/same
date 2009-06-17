@@ -7,10 +7,11 @@
 //
 
 #import "SameView.h"
+#import "SameAppDelegate.h"
 
 CGRect CGRectFromTilePosition(int x, int y)
 {
-	return CGRectMake(12+(x*33),12+(y*33),33,33);
+	return CGRectMake(12+(x*33),12+(y*33),32,32);
 }
 
 int score_for_tiles(int n)
@@ -45,7 +46,7 @@ int rcompare(NSNumber * a, NSNumber * b, void * context)
 			scoreLabel.text = [NSString stringWithFormat:@"%d points", overallScore];
 		}
 		
-		NSMutableArray * scores = [[[UIApplication sharedApplication] delegate] scores];
+		NSMutableArray * scores = [(id)[[UIApplication sharedApplication] delegate] scores];
 		
 		[scores addObject:[NSNumber numberWithInt:overallScore]];
 		[scores sortUsingFunction:&rcompare context:nil];
@@ -95,7 +96,6 @@ int rcompare(NSNumber * a, NSNumber * b, void * context)
 	
 	valueLabel.text = @"";
 	scoreLabel.text = @"0 points";
-
 }
 
 - (void)showGame
@@ -447,10 +447,6 @@ int rcompare(NSNumber * a, NSNumber * b, void * context)
 	overallScore += score_for_tiles([t count]);
 	
 	scoreLabel.text = [NSString stringWithFormat:@"%d points",overallScore];
-}
-
-- (void)viewDidUnload
-{
 }
 
 - (void)dealloc

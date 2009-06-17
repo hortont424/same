@@ -7,6 +7,8 @@
 //
 
 #import "SameHUD.h"
+#import "SameAppDelegate.h"
+#import "SameView.h"
 
 @implementation SameHUD
 
@@ -48,6 +50,7 @@ void CGContextAddRoundedRect(CGContextRef c, CGRect rect, int corner_radius)
 		titleLabel.textColor = [UIColor whiteColor];
 		titleLabel.textAlignment = UITextAlignmentCenter;
 		titleLabel.font = [UIFont boldSystemFontOfSize:26];
+		titleLabel.text = @"Same";
 		[self addSubview:titleLabel];
 		
 		scoreLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 50, frame.size.width, 40)];
@@ -113,6 +116,7 @@ void CGContextAddRoundedRect(CGContextRef c, CGRect rect, int corner_radius)
 	myEndPoint.x = drawRect.origin.x;
 	myEndPoint.y = drawRect.origin.y + drawRect.size.height;
 	CGContextDrawLinearGradient(context, myGradient, drawRect.origin, myEndPoint, 0);
+	CGGradientRelease(myGradient);
 	
 	CGContextRestoreGState(context);
 	
@@ -133,10 +137,13 @@ void CGContextAddRoundedRect(CGContextRef c, CGRect rect, int corner_radius)
 
 - (void)showHUDWithPoints:(int)points gameWon:(int)won
 {
+	[titleLabel.text release];
+	[scoreLabel.text release];
+	
 	titleLabel.text = won ? @"Game Won!" : @"Game Over!";
 	scoreLabel.text = [NSString stringWithFormat:@"%d points", points];
 	
-	NSMutableArray * scores = [[[UIApplication sharedApplication] delegate] scores];
+	NSMutableArray * scores = [(id)[[UIApplication sharedApplication] delegate] scores];
 	int y = 0;
 	
 	for(NSNumber * score in scores)

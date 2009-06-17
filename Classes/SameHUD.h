@@ -18,6 +18,7 @@
 }
 
 - (void)showHUDWithPoints:(int)points gameWon:(int)won;
+- (void)hideHUD:(id)sender;
 
 @property (nonatomic,assign) id delegate;
 

@@ -41,8 +41,6 @@
 	[window addSubview:sv];
 	
     [window makeKeyAndVisible];
-
-	NSLog(@"%@", scores);
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -53,11 +51,7 @@
 	rootObject = [NSMutableDictionary dictionary];
 
 	[rootObject setValue:scores forKey:@"scores"];
-
-	if([NSKeyedArchiver archiveRootObject:rootObject toFile:path])
-		NSLog(@"Data Saved Successfully");
-	else
-		NSLog(@"Error: Data Save Failed");
+	[NSKeyedArchiver archiveRootObject:rootObject toFile:path];
 	
 	[super dealloc];
 	
