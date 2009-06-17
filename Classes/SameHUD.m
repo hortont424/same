@@ -131,10 +131,6 @@ void CGContextAddRoundedRect(CGContextRef c, CGRect rect, int corner_radius)
 	titleLabel.text = won ? @"Game Won!" : @"Game Over!";
 	scoreLabel.text = [NSString stringWithFormat:@"%d points", points];
 	
-	
-	
-	
-	
 	NSMutableArray * scores = [[[UIApplication sharedApplication] delegate] scores];
 	int y = 0;
 	
@@ -143,18 +139,13 @@ void CGContextAddRoundedRect(CGContextRef c, CGRect rect, int corner_radius)
 		UILabel * l = [[UILabel alloc] initWithFrame:CGRectMake(0, 130 + (18 * y), [self frame].size.width, 18)];
 		l.backgroundColor = [UIColor clearColor];
 		l.textColor = [UIColor whiteColor];
+		l.layer.opacity = ([score intValue] == points) ? 1.0 : 0.5;
 		l.textAlignment = UITextAlignmentCenter;
 		l.font = [UIFont systemFontOfSize:14];
 		l.text = [NSString stringWithFormat:@"%d points", [score intValue]];
 		[self addSubview:l];
 		y++;
 	}
-	
-	
-	
-	
-	
-	
 	
 	self.hidden = NO;
 	

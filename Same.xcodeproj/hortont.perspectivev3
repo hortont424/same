@@ -308,7 +308,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>359036700FE8569600C40DF0</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>SameTile.m</string>
+								<string>SameHUD.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -316,17 +316,17 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>359036710FE8569600C40DF0</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>SameTile.m</string>
+										<string>SameHUD.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>359038060FE8832F00C40DF0</string>
+										<string>353D22350FE8AE6C00664C1E</string>
 										<key>history</key>
 										<array>
 											<string>359036890FE857DD00C40DF0</string>
 											<string>359037A00FE874E000C40DF0</string>
-											<string>359037FD0FE8818F00C40DF0</string>
-											<string>359037FC0FE8818E00C40DF0</string>
+											<string>353D22240FE8AE3F00664C1E</string>
+											<string>353D22250FE8AE3F00664C1E</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -334,8 +334,7 @@
 											<string>3590368C0FE857DD00C40DF0</string>
 											<string>3590368D0FE857DD00C40DF0</string>
 											<string>359036B80FE8598B00C40DF0</string>
-											<string>359036E60FE85B9C00C40DF0</string>
-											<string>359037A20FE874E000C40DF0</string>
+											<string>353D22260FE8AE3F00664C1E</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -372,7 +371,7 @@
 									<key>GeometryConfiguration</key>
 									<dict>
 										<key>Frame</key>
-										<string>{{10, 27}, {1167, 770}}</string>
+										<string>{{10, 27}, {0, -27}}</string>
 									</dict>
 									<key>Module</key>
 									<string>XCDetailModule</string>
@@ -454,11 +453,11 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>359036720FE8569600C40DF0</string>
+				<string>353D22290FE8AE3F00664C1E</string>
 				<string>1CA23ED40692098700951B8B</string>
-				<string>359036730FE8569600C40DF0</string>
+				<string>353D222A0FE8AE3F00664C1E</string>
 				<string>359036700FE8569600C40DF0</string>
-				<string>359036740FE8569600C40DF0</string>
+				<string>353D222B0FE8AE3F00664C1E</string>
 				<string>1CA23EDF0692099D00951B8B</string>
 				<string>1CA23EE00692099D00951B8B</string>
 				<string>1CA23EE10692099D00951B8B</string>
@@ -613,14 +612,14 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>359036900FE857E500C40DF0</string>
+				<string>353D22170FE8ACE500664C1E</string>
 				<string>1CCC7628064C1048000F2A68</string>
 				<string>1CCC7629064C1048000F2A68</string>
-				<string>359036910FE857E500C40DF0</string>
-				<string>359036920FE857E500C40DF0</string>
-				<string>359036930FE857E500C40DF0</string>
-				<string>359036940FE857E500C40DF0</string>
-				<string>359036700FE8569600C40DF0</string>
+				<string>353D22180FE8ACE500664C1E</string>
+				<string>353D22190FE8ACE500664C1E</string>
+				<string>353D221A0FE8ACE500664C1E</string>
+				<string>353D221B0FE8ACE500664C1E</string>
+				<string>353D221C0FE8ACE500664C1E</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>
@@ -650,8 +649,6 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>3590369A0FE8588D00C40DF0</string>
-		<string>359036960FE857E500C40DF0</string>
 		<string>/Users/hortont/Code/Same/Same.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
