@@ -102,16 +102,16 @@ int rcompare(NSNumber * a, NSNumber * b, void * context)
 {
 	int x, y;
 	
-	self.layer.opacity = 0.0;
+	self.layer.opacity = 1.0;
 	
-	CABasicAnimation * fin = [CABasicAnimation animationWithKeyPath:@"opacity"];
+	/*CABasicAnimation * fin = [CABasicAnimation animationWithKeyPath:@"opacity"];
 	fin.duration = 1.0;
 	fin.fromValue = [NSNumber numberWithFloat:0.0];
 	fin.toValue = [NSNumber numberWithFloat:1.0];
 	fin.removedOnCompletion = NO;
 	fin.fillMode  = kCAFillModeForwards;
 	fin.delegate = self;
-	[self.layer addAnimation:fin forKey:@"fin"];
+	[self.layer addAnimation:fin forKey:@"fin"];*/
 	
 	for(y = 0; y < 12; y++)
 	{

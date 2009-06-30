@@ -8,6 +8,7 @@
 
 #import "SameAppDelegate.h"
 #import "SameView.h"
+#import "SameMenu.h"
 
 #import "SameHUD.h"
 
@@ -39,10 +40,10 @@
 	window = [[UIWindow alloc] initWithFrame:CGRectMake(0,0,320,480)];
 	[window addSubview:img];
 	
-	SameView * sv = [[SameView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]];
-	sv.userInteractionEnabled = YES;
+	SameMenu * smenu = [[SameMenu alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]];
+	smenu.userInteractionEnabled = YES;
 	window.userInteractionEnabled = YES;
-	[window addSubview:sv];
+	[window addSubview:smenu];
 	
     [window makeKeyAndVisible];
 }
