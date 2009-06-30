@@ -63,7 +63,8 @@
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-	[self hideHUD:touches];
+	if([[self.layer animationKeys] count] == 0)
+		[self hideHUD:touches];
 }
 
 - (void)drawRect:(CGRect)rect
@@ -144,7 +145,7 @@
 	outAnimation.toValue = [NSValue valueWithCATransform3D:CATransform3DScale(self.layer.transform, 1, 1, 1)];
 	outAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
 	outAnimation.fillMode  = kCAFillModeForwards;
-	outAnimation.removedOnCompletion = NO;
+	outAnimation.removedOnCompletion = YES;
 	
 	CABasicAnimation * fadeAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
 	fadeAnimation.duration = 0.7;
@@ -167,7 +168,7 @@
 	outAnimation.toValue = [NSValue valueWithCATransform3D:CATransform3DScale(self.layer.transform, .1, .1, .1)];
 	outAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
 	outAnimation.fillMode  = kCAFillModeForwards;
-	outAnimation.removedOnCompletion = NO;
+	outAnimation.removedOnCompletion = YES;
 	
 	CABasicAnimation * fadeAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
 	fadeAnimation.duration = 0.7;
@@ -191,6 +192,11 @@
 	{
 		[delegate dismissedHUD];
 		[self.layer removeAllAnimations];
+	}
+	else if(theAnimation == [self.layer animationForKey:@"fade"])
+	{
+		self.layer.opacity = 1.0;
+		[self.layer removeAnimationForKey:@"fade"];
 	}
 }
 
