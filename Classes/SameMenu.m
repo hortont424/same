@@ -19,7 +19,7 @@
 	{
 		CGRect drawRect = CGRectInset([self bounds], 30, 40);
 		
-		UILabel * titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 80, frame.size.width, 45)];
+		UILabel * titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 70, frame.size.width, 45)];
 		titleLabel.backgroundColor = [UIColor clearColor];
 		titleLabel.textColor = [UIColor whiteColor];
 		titleLabel.textAlignment = UITextAlignmentCenter;
@@ -29,19 +29,25 @@
 		titleLabel.text = @"SAME";
 		[self addSubview:titleLabel];
 		
-		SameMenuButton * newGameButton = [[SameMenuButton alloc] initWithFrame:CGRectMake(drawRect.origin.x + 30, 150, 200, 50)];
+		SameMenuButton * newGameButton = [[SameMenuButton alloc] initWithFrame:CGRectMake(drawRect.origin.x + 30, 140, 200, 50)];
 		newGameButton.backgroundColor = [UIColor clearColor];
 		newGameButton.title = @"Normal Game";
 		[newGameButton addTarget:self action:@selector(newNormalGame:) forControlEvents:UIControlEventTouchUpInside];
 		[self addSubview:newGameButton];
 		
-		SameMenuButton * newTimedGameButton = [[SameMenuButton alloc] initWithFrame:CGRectMake(drawRect.origin.x + 30, 220, 200, 50)];
+		SameMenuButton * newTimedGameButton = [[SameMenuButton alloc] initWithFrame:CGRectMake(drawRect.origin.x + 30, 210, 200, 50)];
 		newTimedGameButton.backgroundColor = [UIColor clearColor];
 		newTimedGameButton.title = @"Timed Game";
 		[newTimedGameButton addTarget:self action:@selector(newNormalGame:) forControlEvents:UIControlEventTouchUpInside];
 		[self addSubview:newTimedGameButton];
 		
-		SameMenuButton * preferencesButton = [[SameMenuButton alloc] initWithFrame:CGRectMake(drawRect.origin.x + 30, 290, 200, 50)];
+		SameMenuButton * scoresButton = [[SameMenuButton alloc] initWithFrame:CGRectMake(drawRect.origin.x + 30, 280, 200, 50)];
+		scoresButton.backgroundColor = [UIColor clearColor];
+		scoresButton.title = @"Scores";
+		[scoresButton addTarget:self action:@selector(newNormalGame:) forControlEvents:UIControlEventTouchUpInside];
+		[self addSubview:scoresButton];
+		
+		SameMenuButton * preferencesButton = [[SameMenuButton alloc] initWithFrame:CGRectMake(drawRect.origin.x + 30, 350, 200, 50)];
 		preferencesButton.backgroundColor = [UIColor clearColor];
 		preferencesButton.title = @"Settings";
 		[preferencesButton addTarget:self action:@selector(newNormalGame:) forControlEvents:UIControlEventTouchUpInside];
