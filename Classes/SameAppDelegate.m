@@ -25,8 +25,6 @@
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application
 {
-	img = [[UIImageView alloc] initWithImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Default" ofType:@"png"]]];
-	
 	NSString * path = [self pathForDataFile];
 	NSDictionary * rootObject;
 	
@@ -38,7 +36,6 @@
 		scores = [[NSMutableArray alloc] init];
 
 	window = [[UIWindow alloc] initWithFrame:CGRectMake(0,0,320,480)];
-	[window addSubview:img];
 	
 	SameMenu * smenu = [[SameMenu alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]];
 	smenu.userInteractionEnabled = YES;
