@@ -22,11 +22,84 @@ int score_for_tiles(int n)
 	return (n - 2) * (n - 2);
 }
 
-@implementation SameView
-
 int rcompare(NSNumber * a, NSNumber * b, void * context)
 {
     return [b compare:a];
+}
+
+@implementation SameView
+
+- (BOOL) AccelerationIsShakingLast:(UIAcceleration *)last current:(UIAcceleration *)current threshold:(double)threshold
+{
+    double
+	deltaX = fabs(last.x - current.x),
+	deltaY = fabs(last.y - current.y),
+	deltaZ = fabs(last.z - current.z);
+	
+    return
+	(deltaX > threshold && deltaY > threshold) ||
+	(deltaX > threshold && deltaZ > threshold) ||
+	(deltaY > threshold && deltaZ > threshold);
+}
+
+- (void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration
+{
+	if(lastAcceleration)
+	{
+		if([self AccelerationIsShakingLast:lastAcceleration current:acceleration threshold:0.7] && shakeCount >= 9)
+		{
+			//Shaking here, DO stuff.
+			NSLog(@"shake");
+			
+			// TODO: copied from below, BAD
+			
+			// Remove remaining tiles
+			int x, y;
+			
+			for(UIView * view in self.subviews)
+			{
+				if(view != valueLabel && view != scoreLabel)
+					[view removeFromSuperview];
+			}
+			
+			for(y = 0; y < 12; y++)
+			{
+				for(x = 0; x < 9; x++)
+				{
+					@try
+					{
+						SameTile * t = allTiles[y*9+x];
+						if(t)
+						{
+							[t removeFromSuperview];
+							[t release];
+							allTiles[y*9+x] = nil;
+						}
+					}
+					@catch (NSException * e) {}
+				}
+			}
+			
+			[self performSelector:@selector(initGame) withObject:self afterDelay:0];
+			[self performSelector:@selector(showGame) withObject:self afterDelay:0.2];
+			
+			
+			shakeCount = 0;
+		}
+		else if([self AccelerationIsShakingLast:lastAcceleration current:acceleration threshold:0.7])
+		{
+			shakeCount = shakeCount + 5;
+		}
+		else if (![self AccelerationIsShakingLast:lastAcceleration current:acceleration threshold:0.2])
+		{
+			if (shakeCount > 0)
+			{
+				shakeCount--;
+			}
+		}
+	}
+	
+	lastAcceleration = [acceleration retain];
 }
 
 - (void)animationDone
@@ -186,6 +259,10 @@ int rcompare(NSNumber * a, NSNumber * b, void * context)
 		scoreLabel.textAlignment = UITextAlignmentLeft;
 		scoreLabel.font = [UIFont boldSystemFontOfSize:20];
 		[self addSubview:scoreLabel];
+		
+		lastAcceleration = nil;
+		[[UIAccelerometer sharedAccelerometer] setDelegate:self];
+		[[UIAccelerometer sharedAccelerometer] setUpdateInterval:(1.0 / 15)];
 		
 		[self initGame];
 		[self showGame];

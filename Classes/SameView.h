@@ -23,6 +23,9 @@
 	
 	UILabel * valueLabel, * scoreLabel;
 	SameHUD * hud;
+	
+	UIAcceleration * lastAcceleration;
+	int shakeCount;
 }
 
 - (void)removeTiles:(NSMutableArray*)t;

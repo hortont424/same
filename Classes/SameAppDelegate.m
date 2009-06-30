@@ -14,7 +14,7 @@
 
 @implementation SameAppDelegate
 
-@synthesize window, scores, img;
+@synthesize window, scores;
 
 - (NSString *)pathForDataFile
 {
@@ -45,16 +45,6 @@
     [window makeKeyAndVisible];
 }
 
-- (void)removeImage
-{
-	if(img)
-	{
-		[img removeFromSuperview];
-		[img release];
-		img = nil;
-	}
-}
-
 - (void)applicationWillTerminate:(UIApplication *)application
 {
 	NSString * path = [self pathForDataFile];
@@ -66,7 +56,6 @@
 	[NSKeyedArchiver archiveRootObject:rootObject toFile:path];
 	
 	[super dealloc];
-	
 }
 
 - (void)dealloc
