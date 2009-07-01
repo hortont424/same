@@ -12,16 +12,40 @@
 
 @implementation SameTile
 
-@synthesize color, visited, state, x, y, frame, lit, animating, newPoint, originalPoint, delta;
+@synthesize color, visited, state, x, y;
 
-- (id)init
+- (id)initWithFrame:(CGRect)frame
 {
-    if (self = [super init])
-	{		
+    if (self = [super initWithFrame:frame])
+	{
+		UIImage * colorImage;
+		
 		state = YES;
 		visited = NO;
 		color = rand() % 3;
-	}
+		
+		switch(color)
+		{
+			case 0: colorImage = [[SameTileImages shared] redImage]; break;
+			case 1: colorImage = [[SameTileImages shared] greenImage]; break;
+			case 2: colorImage = [[SameTileImages shared] blueImage]; break;
+			case 3: colorImage = [[SameTileImages shared] yellowImage]; break;
+			default: colorImage = [[SameTileImages shared] redImage]; break;
+		}
+		
+		[colorImage retain];
+		
+		self.userInteractionEnabled = NO;
+		self.layer.opacity = 0.8;
+		self.opaque = YES;
+		self.backgroundColor = [UIColor clearColor];
+		
+		imageView = [[UIImageView alloc] initWithImage:colorImage];
+		imageView.frame = CGRectMake(0,0,32,32);
+		imageView.opaque = YES;
+		imageView.backgroundColor = [UIColor clearColor];
+		[self addSubview:imageView];
+    }
     return self;
 }
 
@@ -29,7 +53,7 @@
 {
 	state = NO;
 	
-	/*CABasicAnimation * outAnimation = [CABasicAnimation animationWithKeyPath:@"transform"];
+	CABasicAnimation * outAnimation = [CABasicAnimation animationWithKeyPath:@"transform"];
 	outAnimation.duration = 0.5;
 	outAnimation.toValue = [NSValue valueWithCATransform3D:CATransform3DScale(self.layer.transform, 2, 2, 2)];
 	outAnimation.fillMode  = kCAFillModeForwards;
@@ -44,18 +68,18 @@
 	
 	[self.layer addAnimation:outAnimation forKey:@"out"];
 	[self.layer addAnimation:fadeAnimation forKey:@"fade"];
-	[(SameView*)[self superview] animationStart];*/
+	[(SameView*)[self superview] animationStart];
 }
 
-/*- (void)hideTile
+- (void)hideTile
 {
 	state = NO;
 	self.layer.opacity = 0.2;
-}*/
+}
 
 - (void)moveTo:(CGPoint)pt
 {
-	/*CABasicAnimation * moveXAnimation = [CABasicAnimation animationWithKeyPath:@"position.x"];
+	CABasicAnimation * moveXAnimation = [CABasicAnimation animationWithKeyPath:@"position.x"];
 	moveXAnimation.duration = 0.5;
 	moveXAnimation.toValue = [NSNumber numberWithFloat:pt.x];
 	moveXAnimation.removedOnCompletion = NO;
@@ -73,20 +97,10 @@
 	[self.layer addAnimation:moveXAnimation forKey:@"moveX"];
 	[self.layer addAnimation:moveYAnimation forKey:@"moveY"];
 	[(SameView*)[self superview] animationStart];
-	globalNewPt = pt;*/
-	
-	newPoint.x = pt.x;
-	newPoint.y = pt.y;
-	
-	originalPoint = frame.origin;
-	
-	delta.x = (newPoint.x - originalPoint.x) / 20.0;
-	delta.y = (newPoint.y - originalPoint.y) / 20.0;
-	
-	animating = YES;
+	globalNewPt = pt;
 }
 
-/*- (void)animationDidStop:(CAAnimation *)theAnimation finished:(BOOL)flag
+- (void)animationDidStop:(CAAnimation *)theAnimation finished:(BOOL)flag
 {
 	if(theAnimation == [self.layer animationForKey:@"fade"])
 	{
@@ -134,7 +148,7 @@
 	[imageView release];
 	
 	[super dealloc];
-}*/
+}
 
 
 @end
