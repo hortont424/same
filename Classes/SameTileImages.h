@@ -20,5 +20,6 @@
 @property (nonatomic,readonly) UIImage * greenImage;
 
 + (SameTileImages*)shared;
+- (UIImage *)imageForColor:(int)c;
 
 @end

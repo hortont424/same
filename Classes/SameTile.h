@@ -9,31 +9,33 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/CoreAnimation.h>
 
-@interface SameTile : UIView
+@interface SameTile : NSObject
 {
-	UIImageView * imageView;
 	int color;
 	BOOL visited;
 	BOOL state;
+	BOOL lit;
+	int animating;
 	
 	int x;
 	int y;
 	
-	CGPoint globalNewPt;
+	CGRect frame;
 	
-	CABasicAnimation * fadeAnimation;
+	CGPoint newPoint, originalPoint, delta;
 }
 
 @property (nonatomic) int color;
 @property (nonatomic) BOOL visited;
 @property (nonatomic) BOOL state;
+@property (nonatomic) BOOL lit;
+@property (nonatomic) int animating;
 @property (nonatomic) int x;
 @property (nonatomic) int y;
 
-- (void)moveTo:(CGPoint)pt;
-- (void)closeTile;
-- (void)hideTile;
-- (void)light;
-- (void)unlight;
+@property (nonatomic,assign) CGRect frame;
+@property (nonatomic,assign) CGPoint newPoint;
+@property (nonatomic,assign) CGPoint originalPoint;
+@property (nonatomic,assign) CGPoint delta;
 
 @end

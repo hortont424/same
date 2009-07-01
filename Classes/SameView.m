@@ -8,6 +8,7 @@
 
 #import "SameView.h"
 #import "SameAppDelegate.h"
+#import "SameTileImages.h"
 
 CGRect CGRectFromTilePosition(int x, int y)
 {
@@ -104,9 +105,7 @@ int rcompare(NSNumber * a, NSNumber * b, void * context)
 
 - (void)animationDone
 {
-	animCount--;
-	
-	if(animCount == 0 && (([self gameWon] || [self gameCompleted]) && !hud))
+	if(([self gameWon] || [self gameCompleted]) && !hud)
 	{
 		hud = [[SameHUD alloc] initWithFrame:CGRectInset([self bounds], 50, 75)];
 		hud.delegate = self;
@@ -156,16 +155,16 @@ int rcompare(NSNumber * a, NSNumber * b, void * context)
 	{
 		for(x = 0; x < 9; x++)
 		{
-			SameTile * st = [[SameTile alloc] initWithFrame:CGRectFromTilePosition(x, 11-y)];
+			SameTile * st = [[SameTile alloc] init];
+			st.frame = CGRectFromTilePosition(x, 11-y);
 			st.x = x;
 			st.y = y;
 			tiles[x][y] = st;
 			allTiles[y*9+x] = st;
-			[self addSubview:st];
-			st.hidden = YES;
-			animCount = 0;
 		}
 	}
+	
+	animCount = 0;
 	
 	valueLabel.text = @"";
 	scoreLabel.text = @"0 points";
@@ -173,26 +172,24 @@ int rcompare(NSNumber * a, NSNumber * b, void * context)
 
 - (void)showGame
 {
-	int x, y;
-	
 	self.layer.opacity = 1.0;
 	
-	/*CABasicAnimation * fin = [CABasicAnimation animationWithKeyPath:@"opacity"];
+	CABasicAnimation * fin = [CABasicAnimation animationWithKeyPath:@"opacity"];
 	fin.duration = 1.0;
 	fin.fromValue = [NSNumber numberWithFloat:0.0];
 	fin.toValue = [NSNumber numberWithFloat:1.0];
 	fin.removedOnCompletion = NO;
 	fin.fillMode  = kCAFillModeForwards;
 	fin.delegate = self;
-	[self.layer addAnimation:fin forKey:@"fin"];*/
+	[self.layer addAnimation:fin forKey:@"fin"];
 	
-	for(y = 0; y < 12; y++)
+	/*for(y = 0; y < 12; y++)
 	{
 		for(x = 0; x < 9; x++)
 		{
 			allTiles[y*9+x].hidden = NO;
 		}
-	}
+	}*/
 }
 
 - (void)animationDidStop:(CAAnimation *)theAnimation finished:(BOOL)flag
@@ -201,7 +198,6 @@ int rcompare(NSNumber * a, NSNumber * b, void * context)
 	{
 		self.layer.opacity = 1.0;
 		[self.layer removeAnimationForKey:@"fin"];
-		[(id)[[UIApplication sharedApplication] delegate] removeImage];
 	}
 	
 	if(theAnimation == [self.layer animationForKey:@"fout"])
@@ -212,12 +208,6 @@ int rcompare(NSNumber * a, NSNumber * b, void * context)
 		// Remove remaining tiles
 		int x, y;
 
-		for(UIView * view in self.subviews)
-		{
-			if(view != valueLabel && view != scoreLabel)
-				[view removeFromSuperview];
-		}
-
 		for(y = 0; y < 12; y++)
 		{
 			for(x = 0; x < 9; x++)
@@ -227,7 +217,6 @@ int rcompare(NSNumber * a, NSNumber * b, void * context)
 					SameTile * t = allTiles[y*9+x];
 					if(t)
 					{
-						[t removeFromSuperview];
 						[t release];
 						allTiles[y*9+x] = nil;
 					}
@@ -245,6 +234,7 @@ int rcompare(NSNumber * a, NSNumber * b, void * context)
     if (self = [super initWithFrame:frame])
 	{
 		self.backgroundColor = [UIColor blackColor];
+		self.opaque = YES;
 		
 		valueLabel = [[UILabel alloc] initWithFrame:CGRectMake(160, 413, 160 - 16, 40)];
 		valueLabel.backgroundColor = [UIColor blackColor];
@@ -263,6 +253,8 @@ int rcompare(NSNumber * a, NSNumber * b, void * context)
 		lastAcceleration = nil;
 		[[UIAccelerometer sharedAccelerometer] setDelegate:self];
 		[[UIAccelerometer sharedAccelerometer] setUpdateInterval:(1.0 / 15)];
+		
+		animationTimer = [NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(handleTimer:) userInfo:nil repeats:YES];
 		
 		[self initGame];
 		[self showGame];
@@ -333,13 +325,15 @@ int rcompare(NSNumber * a, NSNumber * b, void * context)
 	if(litTiles)
 		for(SameTile * tile in litTiles)
 		{
-			[tile unlight];
+			tile.lit = NO;
 		}
 	
 	[litTiles release];
 	litTiles = nil;
 	
 	valueLabel.text = @"";
+	
+	[self setNeedsDisplay];
 }
 
 - (void)lightTiles:(NSMutableArray*)t
@@ -348,12 +342,14 @@ int rcompare(NSNumber * a, NSNumber * b, void * context)
 	
 	for(SameTile * tile in t)
 	{
-		[tile light];
+		tile.lit = YES;
 	}
 	
 	valueLabel.text = [NSString stringWithFormat:@"+%d",score_for_tiles([t count])];
 	
 	litTiles = [t copy];
+	
+	[self setNeedsDisplay];
 }
 
 - (BOOL)gameCompleted
@@ -403,7 +399,7 @@ int rcompare(NSNumber * a, NSNumber * b, void * context)
 	
 	for(y = 0; y < 12; y++)
 		for(x = 0; x < 9; x++)
-			if(CGRectContainsPoint([tiles[x][y] frame], [t locationInView:self]))
+			if(CGRectContainsPoint(CGRectInset([tiles[x][y] frame], -1, -1), [t locationInView:self]))
 			{
 				if(tiles[x][y] == lastTile)
 					return;
@@ -433,7 +429,7 @@ int rcompare(NSNumber * a, NSNumber * b, void * context)
 	{
 		for(x = 0; x < 9; x++)
 		{
-			if(CGRectContainsPoint([tiles[x][y] frame], [t locationInView:self]))
+			if(CGRectContainsPoint(CGRectInset([tiles[x][y] frame], -1, -1), [t locationInView:self]))
 			{
 				NSMutableArray * rm = [self tilesConnectedTo:tiles[x][y]];
 				[self removeTiles:rm];
@@ -441,6 +437,9 @@ int rcompare(NSNumber * a, NSNumber * b, void * context)
 			}
 		}
 	}
+	
+	[self unlightTiles];
+	lastTile = nil;
 }
 
 - (void)dismissedHUD
@@ -458,6 +457,8 @@ int rcompare(NSNumber * a, NSNumber * b, void * context)
 		return;
 	
 	[self unlightTiles];
+	
+	animating = YES;
 	
 	for(SameTile * tile in t)
 	{
@@ -506,7 +507,7 @@ int rcompare(NSNumber * a, NSNumber * b, void * context)
 				CGPoint newPt = CGRectFromTilePosition(realX, 11-y).origin;
 				
 				if(newPt.x != tile.frame.origin.x || newPt.y != tile.frame.origin.y)
-					[tile moveTo:CGPointMake(16 + newPt.x, 16 + newPt.y)];
+					[tile moveTo:newPt];
 				
 				emptyCol = NO;
 			}
@@ -525,28 +526,73 @@ int rcompare(NSNumber * a, NSNumber * b, void * context)
 	overallScore += score_for_tiles([t count]);
 	
 	scoreLabel.text = [NSString stringWithFormat:@"%d points",overallScore];
+	
+	[self setNeedsDisplay];
 }
 
-- (void)dealloc
+- (void)drawRect:(CGRect)rect
 {
 	int x, y;
-	
 	for(y = 0; y < 12; y++)
 	{
 		for(x = 0; x < 9; x++)
 		{
-			// lol ugly as hell.
+			SameTile * tile = tiles[x][y];
 			
-			@try
-			{
-				[tiles[x][y] removeFromSuperview];
-				[tiles[x][y] release];
-				tiles[x][y] = nil;
-			}
-			@catch (NSException * e) {}
+			UIImage * tileImage = [[SameTileImages shared] imageForColor:tile.color];
+			
+			CGFloat a = (tile.lit ? 1.0 : 0.8);
+			
+			if(tile.state == NO)
+				a = 0.0;
+			
+			[tileImage drawAtPoint:tile.frame.origin blendMode:kCGBlendModeNormal alpha:a];
 		}
 	}
-	
+}
+
+- (void)handleTimer:(NSTimer *)timer
+{
+	if(animating)
+	{
+		NSLog(@"anim");
+		
+		int x, y;
+		for(y = 0; y < 12; y++)
+		{
+			for(x = 0; x < 9; x++)
+			{
+				SameTile * tile = tiles[x][y];
+				
+				if(!tile.animating)
+					continue;
+				
+				CGRect f = tile.frame;
+
+				f.origin.x += tile.delta.x;
+				f.origin.y += tile.delta.y;
+				
+				if(tile.animating++ >= 20)
+				{
+					tile.animating = 0;
+					animating = NO;
+				}
+				
+				tile.frame = f;
+			}
+		}
+		
+		if(!animating)
+		{
+			[self animationDone];
+		}
+		
+		[self setNeedsDisplay];
+	}
+}
+
+- (void)dealloc
+{
 	[valueLabel removeFromSuperview];
 	[valueLabel release];
 	

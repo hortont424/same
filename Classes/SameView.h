@@ -10,7 +10,7 @@
 #import "SameTile.h"
 #import "SameHUD.h"
 
-@interface SameView : UIView <UIAlertViewDelegate>
+@interface SameView : UIView <UIAlertViewDelegate, UIAccelerometerDelegate>
 {
 	SameTile * tiles[9][12];
 	SameTile * allTiles[108];
@@ -26,6 +26,9 @@
 	
 	UIAcceleration * lastAcceleration;
 	int shakeCount;
+	
+	BOOL animating;
+	NSTimer * animationTimer;
 }
 
 - (void)removeTiles:(NSMutableArray*)t;

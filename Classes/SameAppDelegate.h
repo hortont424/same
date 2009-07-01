@@ -10,7 +10,7 @@
 
 @class SameViewController;
 
-@interface SameAppDelegate : NSObject <UIApplicationDelegate, UIAccelerometerDelegate>
+@interface SameAppDelegate : NSObject <UIApplicationDelegate>
 {
 	NSMutableArray * scores;
     UIWindow * window;

@@ -17,10 +17,10 @@
 	self = [super init];
 	if (self != nil)
 	{
-		redImage = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"red" ofType:@"png"]];
-		blueImage = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"blue" ofType:@"png"]];
-		greenImage = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"green" ofType:@"png"]];
-		yellowImage = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"yellow" ofType:@"png"]];
+		redImage = [[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"red" ofType:@"png"]] retain];
+		blueImage = [[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"blue" ofType:@"png"]] retain];
+		greenImage = [[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"green" ofType:@"png"]] retain];
+		yellowImage = [[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"yellow" ofType:@"png"]] retain];
 	}
 	return self;
 }
@@ -34,6 +34,19 @@
         shared = [[SameTileImages alloc] init];
     
     return shared;
+}
+
+- (UIImage *)imageForColor:(int)c
+{
+	switch(c)
+	{
+		case 0: return redImage;
+		case 1: return blueImage;
+		case 2: return greenImage;
+		case 3: return yellowImage;
+	}
+	
+	return redImage;
 }
 
 @end
