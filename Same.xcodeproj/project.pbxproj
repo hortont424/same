@@ -12,6 +12,7 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
+		354BC0FA119E147900C63BCE /* SameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 354BC0F9119E147900C63BCE /* SameViewController.m */; };
 		357A91DE0FF9DFD800DDA0A0 /* SameMenuButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 357A91DD0FF9DFD800DDA0A0 /* SameMenuButton.m */; };
 		357FF4990FF9D8B6005F2F0F /* SameMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 357FF4980FF9D8B6005F2F0F /* SameMenu.m */; };
 		357FF4DD0FF9DB39005F2F0F /* RoundedRect.m in Sources */ = {isa = PBXBuildFile; fileRef = 357FF4DC0FF9DB39005F2F0F /* RoundedRect.m */; };
@@ -36,6 +37,8 @@
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* Same_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Same_Prefix.pch; sourceTree = "<group>"; };
+		354BC0F8119E147900C63BCE /* SameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SameViewController.h; sourceTree = "<group>"; };
+		354BC0F9119E147900C63BCE /* SameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SameViewController.m; sourceTree = "<group>"; };
 		357A91DC0FF9DFD800DDA0A0 /* SameMenuButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SameMenuButton.h; sourceTree = "<group>"; };
 		357A91DD0FF9DFD800DDA0A0 /* SameMenuButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SameMenuButton.m; sourceTree = "<group>"; };
 		357FF4970FF9D8B6005F2F0F /* SameMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SameMenu.h; sourceTree = "<group>"; };
@@ -77,6 +80,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				354BC0F8119E147900C63BCE /* SameViewController.h */,
+				354BC0F9119E147900C63BCE /* SameViewController.m */,
 				357A91DC0FF9DFD800DDA0A0 /* SameMenuButton.h */,
 				357A91DD0FF9DFD800DDA0A0 /* SameMenuButton.m */,
 				357FF4970FF9D8B6005F2F0F /* SameMenu.h */,
@@ -216,6 +221,7 @@
 				357FF4990FF9D8B6005F2F0F /* SameMenu.m in Sources */,
 				357FF4DD0FF9DB39005F2F0F /* RoundedRect.m in Sources */,
 				357A91DE0FF9DFD800DDA0A0 /* SameMenuButton.m in Sources */,
+				354BC0FA119E147900C63BCE /* SameViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

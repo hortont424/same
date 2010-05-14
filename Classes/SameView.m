@@ -52,49 +52,6 @@ int rcompare(NSNumber * a, NSNumber * b, void * context)
     return YES;
 }
 
-- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event
-{
-    NSLog(@"something");
-    
-    if (event.type == UIEventSubtypeMotionShake)
-    {
-        //Shaking here, DO stuff.
-        NSLog(@"shake");
-        
-        // TODO: copied from below, BAD
-        
-        // Remove remaining tiles
-        int x, y;
-        
-        for(UIView * view in self.subviews)
-        {
-            if(view != valueLabel && view != scoreLabel)
-                [view removeFromSuperview];
-        }
-        
-        for(y = 0; y < 12; y++)
-        {
-            for(x = 0; x < 9; x++)
-            {
-                @try
-                {
-                    SameTile * t = allTiles[y*9+x];
-                    if(t)
-                    {
-                        [t removeFromSuperview];
-                        [t release];
-                        allTiles[y*9+x] = nil;
-                    }
-                }
-                @catch (NSException * e) {}
-            }
-        }
-        
-        [self performSelector:@selector(initGame) withObject:self afterDelay:0];
-        [self performSelector:@selector(showGame) withObject:self afterDelay:0.2];
-	}
-}
-
 - (void)animationDone
 {
 	animCount--;
@@ -517,6 +474,38 @@ int rcompare(NSNumber * a, NSNumber * b, void * context)
 	overallScore += score_for_tiles([t count]);
 	
 	scoreLabel.text = [NSString stringWithFormat:@"%d points",overallScore];
+}
+
+- (void)shakeReload
+{
+    int x, y;
+    
+    for(UIView * view in self.subviews)
+    {
+        if(view != valueLabel && view != scoreLabel)
+            [view removeFromSuperview];
+    }
+    
+    for(y = 0; y < 12; y++)
+    {
+        for(x = 0; x < 9; x++)
+        {
+            @try
+            {
+                SameTile * t = allTiles[y*9+x];
+                if(t)
+                {
+                    [t removeFromSuperview];
+                    [t release];
+                    allTiles[y*9+x] = nil;
+                }
+            }
+            @catch (NSException * e) {}
+        }
+    }
+    
+    [self performSelector:@selector(initGame) withObject:self afterDelay:0];
+    [self performSelector:@selector(showGame) withObject:self afterDelay:0.2];
 }
 
 - (void)dealloc

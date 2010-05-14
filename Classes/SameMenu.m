@@ -28,6 +28,7 @@
 #import "RoundedRect.h"
 #import "SameMenuButton.h"
 #import "SameView.h"
+#import "SameViewController.h"
 
 @implementation SameMenu
 
@@ -78,7 +79,7 @@
 {
 	NSLog(@"new normal game");
 	
-	SameView * sv = [[SameView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]];
+	SameView * sv = (SameView*)[[SameViewController new] view];
 	sv.userInteractionEnabled = YES;
 	[[self window] addSubview:sv];
 	[[self window] sendSubviewToBack:sv];

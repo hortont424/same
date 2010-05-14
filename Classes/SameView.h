@@ -43,8 +43,6 @@
 	SameHUD * hud;
 }
 
-- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event;
-
 - (void)removeTiles:(NSMutableArray*)t;
 
 - (void)animationStart;
@@ -56,6 +54,8 @@
 - (void)initGame;
 
 - (void)dismissedHUD;
+
+- (void)shakeReload;
 
 @end
 
