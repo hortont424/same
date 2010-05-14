@@ -47,77 +47,52 @@ int rcompare(NSNumber * a, NSNumber * b, void * context)
 
 @implementation SameView
 
-- (BOOL) AccelerationIsShakingLast:(UIAcceleration *)last current:(UIAcceleration *)current threshold:(double)threshold
+- (BOOL)canBecomeFirstResponder
 {
-    double
-	deltaX = fabs(last.x - current.x),
-	deltaY = fabs(last.y - current.y),
-	deltaZ = fabs(last.z - current.z);
-	
-    return
-	(deltaX > threshold && deltaY > threshold) ||
-	(deltaX > threshold && deltaZ > threshold) ||
-	(deltaY > threshold && deltaZ > threshold);
+    return YES;
 }
 
-- (void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration
+- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event
 {
-	if(lastAcceleration)
-	{
-		if([self AccelerationIsShakingLast:lastAcceleration current:acceleration threshold:0.7] && shakeCount >= 9)
-		{
-			//Shaking here, DO stuff.
-			NSLog(@"shake");
-			
-			// TODO: copied from below, BAD
-			
-			// Remove remaining tiles
-			int x, y;
-			
-			for(UIView * view in self.subviews)
-			{
-				if(view != valueLabel && view != scoreLabel)
-					[view removeFromSuperview];
-			}
-			
-			for(y = 0; y < 12; y++)
-			{
-				for(x = 0; x < 9; x++)
-				{
-					@try
-					{
-						SameTile * t = allTiles[y*9+x];
-						if(t)
-						{
-							[t removeFromSuperview];
-							[t release];
-							allTiles[y*9+x] = nil;
-						}
-					}
-					@catch (NSException * e) {}
-				}
-			}
-			
-			[self performSelector:@selector(initGame) withObject:self afterDelay:0];
-			[self performSelector:@selector(showGame) withObject:self afterDelay:0.2];
-			
-			
-			shakeCount = 0;
-		}
-		else if([self AccelerationIsShakingLast:lastAcceleration current:acceleration threshold:0.7])
-		{
-			shakeCount = shakeCount + 5;
-		}
-		else if (![self AccelerationIsShakingLast:lastAcceleration current:acceleration threshold:0.2])
-		{
-			if (shakeCount > 0)
-			{
-				shakeCount--;
-			}
-		}
+    NSLog(@"something");
+    
+    if (event.type == UIEventSubtypeMotionShake)
+    {
+        //Shaking here, DO stuff.
+        NSLog(@"shake");
+        
+        // TODO: copied from below, BAD
+        
+        // Remove remaining tiles
+        int x, y;
+        
+        for(UIView * view in self.subviews)
+        {
+            if(view != valueLabel && view != scoreLabel)
+                [view removeFromSuperview];
+        }
+        
+        for(y = 0; y < 12; y++)
+        {
+            for(x = 0; x < 9; x++)
+            {
+                @try
+                {
+                    SameTile * t = allTiles[y*9+x];
+                    if(t)
+                    {
+                        [t removeFromSuperview];
+                        [t release];
+                        allTiles[y*9+x] = nil;
+                    }
+                }
+                @catch (NSException * e) {}
+            }
+        }
+        
+        [self performSelector:@selector(initGame) withObject:self afterDelay:0];
+        [self performSelector:@selector(showGame) withObject:self afterDelay:0.2];
 	}
-	
-	lastAcceleration = [acceleration retain];
 }
 
 - (void)animationDone
@@ -144,7 +119,7 @@ int rcompare(NSNumber * a, NSNumber * b, void * context)
 		
 		if([scores count] > 5)
 			[scores removeLastObject];
-			
+        
 		[hud showHUDWithPoints:overallScore gameWon:[self gameWon]];
 		
 		CABasicAnimation * fin = [CABasicAnimation animationWithKeyPath:@"opacity"];
@@ -196,13 +171,13 @@ int rcompare(NSNumber * a, NSNumber * b, void * context)
 	self.layer.opacity = 1.0;
 	
 	/*CABasicAnimation * fin = [CABasicAnimation animationWithKeyPath:@"opacity"];
-	fin.duration = 1.0;
-	fin.fromValue = [NSNumber numberWithFloat:0.0];
-	fin.toValue = [NSNumber numberWithFloat:1.0];
-	fin.removedOnCompletion = NO;
-	fin.fillMode  = kCAFillModeForwards;
-	fin.delegate = self;
-	[self.layer addAnimation:fin forKey:@"fin"];*/
+     fin.duration = 1.0;
+     fin.fromValue = [NSNumber numberWithFloat:0.0];
+     fin.toValue = [NSNumber numberWithFloat:1.0];
+     fin.removedOnCompletion = NO;
+     fin.fillMode  = kCAFillModeForwards;
+     fin.delegate = self;
+     [self.layer addAnimation:fin forKey:@"fin"];*/
 	
 	for(y = 0; y < 12; y++)
 	{
@@ -219,7 +194,7 @@ int rcompare(NSNumber * a, NSNumber * b, void * context)
 	{
 		self.layer.opacity = 1.0;
 		[self.layer removeAnimationForKey:@"fin"];
-		[(id)[[UIApplication sharedApplication] delegate] removeImage];
+		//[(id)[[UIApplication sharedApplication] delegate] removeImage];
 	}
 	
 	if(theAnimation == [self.layer animationForKey:@"fout"])
@@ -229,13 +204,13 @@ int rcompare(NSNumber * a, NSNumber * b, void * context)
 		
 		// Remove remaining tiles
 		int x, y;
-
+        
 		for(UIView * view in self.subviews)
 		{
 			if(view != valueLabel && view != scoreLabel)
 				[view removeFromSuperview];
 		}
-
+        
 		for(y = 0; y < 12; y++)
 		{
 			for(x = 0; x < 9; x++)
@@ -261,29 +236,28 @@ int rcompare(NSNumber * a, NSNumber * b, void * context)
 - (id)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame])
-	{
-		self.backgroundColor = [UIColor blackColor];
-		
-		valueLabel = [[UILabel alloc] initWithFrame:CGRectMake(160, 413, 160 - 16, 40)];
-		valueLabel.backgroundColor = [UIColor blackColor];
-		valueLabel.textColor = [UIColor whiteColor];
-		valueLabel.textAlignment = UITextAlignmentRight;
-		valueLabel.font = [UIFont systemFontOfSize:20];
-		[self addSubview:valueLabel];
-		
-		scoreLabel = [[UILabel alloc] initWithFrame:CGRectMake(16, 413, 160, 40)];
-		scoreLabel.backgroundColor = [UIColor blackColor];
-		scoreLabel.textColor = [UIColor whiteColor];
-		scoreLabel.textAlignment = UITextAlignmentLeft;
-		scoreLabel.font = [UIFont boldSystemFontOfSize:20];
-		[self addSubview:scoreLabel];
-		
-		lastAcceleration = nil;
-		[[UIAccelerometer sharedAccelerometer] setDelegate:self];
-		[[UIAccelerometer sharedAccelerometer] setUpdateInterval:(1.0 / 15)];
-		
-		[self initGame];
-		[self showGame];
+    {
+        self.backgroundColor = [UIColor blackColor];
+        
+        valueLabel = [[UILabel alloc] initWithFrame:CGRectMake(160, 413, 160 - 16, 40)];
+        valueLabel.backgroundColor = [UIColor blackColor];
+        valueLabel.textColor = [UIColor whiteColor];
+        valueLabel.textAlignment = UITextAlignmentRight;
+        valueLabel.font = [UIFont systemFontOfSize:20];
+        [self addSubview:valueLabel];
+        
+        scoreLabel = [[UILabel alloc] initWithFrame:CGRectMake(16, 413, 160, 40)];
+        scoreLabel.backgroundColor = [UIColor blackColor];
+        scoreLabel.textColor = [UIColor whiteColor];
+        scoreLabel.textAlignment = UITextAlignmentLeft;
+        scoreLabel.font = [UIFont boldSystemFontOfSize:20];
+        [self addSubview:scoreLabel];
+        
+        [self initGame];
+        [self showGame];
+        
+        [self becomeFirstResponder];
+        self.userInteractionEnabled = YES;
     }
     return self;
 }
@@ -331,7 +305,7 @@ int rcompare(NSNumber * a, NSNumber * b, void * context)
 		[connected addObjectsFromArray:temp];
 		[temp release];
 	}
-
+    
 	return connected;
 }
 

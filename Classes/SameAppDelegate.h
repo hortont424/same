@@ -28,13 +28,11 @@
 
 @class SameViewController;
 
-@interface SameAppDelegate : NSObject <UIApplicationDelegate, UIAccelerometerDelegate>
+@interface SameAppDelegate : NSObject <UIApplicationDelegate>
 {
-	NSMutableArray * scores;
+    NSMutableArray * scores;
     UIWindow * window;
 }
-
-- (void)removeImage;
 
 @property (nonatomic, retain) IBOutlet UIWindow * window;
 @property (nonatomic, assign) NSMutableArray * scores;

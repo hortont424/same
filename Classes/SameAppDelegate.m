@@ -43,33 +43,33 @@
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application
 {
-	NSString * path = [self pathForDataFile];
-	NSDictionary * rootObject;
-	
-	srand(time(NULL));
-	
-	rootObject = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
-	scores = [[NSMutableArray alloc] initWithArray:[rootObject valueForKey:@"scores"]];
-	if(!scores)
-		scores = [[NSMutableArray alloc] init];
-
-	window = [[UIWindow alloc] initWithFrame:CGRectMake(0,0,320,480)];
-	
-	SameMenu * smenu = [[SameMenu alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]];
-	smenu.userInteractionEnabled = YES;
-	window.userInteractionEnabled = YES;
-	[window addSubview:smenu];
-	
+    NSString * path = [self pathForDataFile];
+    NSDictionary * rootObject;
+    
+    srand(time(NULL));
+    
+    rootObject = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
+    scores = [[NSMutableArray alloc] initWithArray:[rootObject valueForKey:@"scores"]];
+    if(!scores)
+        scores = [[NSMutableArray alloc] init];
+    
+    window = [[UIWindow alloc] initWithFrame:CGRectMake(0,0,320,480)];
+    
+    SameMenu * smenu = [[[SameMenu alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]] autorelease];
+    smenu.userInteractionEnabled = YES;
+    window.userInteractionEnabled = YES;
+    [window addSubview:smenu];
+    
     [window makeKeyAndVisible];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
 	NSString * path = [self pathForDataFile];
-
+    
 	NSMutableDictionary * rootObject;
 	rootObject = [NSMutableDictionary dictionary];
-
+    
 	[rootObject setValue:scores forKey:@"scores"];
 	[NSKeyedArchiver archiveRootObject:rootObject toFile:path];
 	

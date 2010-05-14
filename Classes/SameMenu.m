@@ -56,7 +56,7 @@
 		SameMenuButton * newTimedGameButton = [[SameMenuButton alloc] initWithFrame:CGRectMake(drawRect.origin.x + 30, 210, 200, 50)];
 		newTimedGameButton.backgroundColor = [UIColor clearColor];
 		newTimedGameButton.title = @"Timed Game";
-		[newTimedGameButton addTarget:self action:@selector(newNormalGame:) forControlEvents:UIControlEventTouchUpInside];
+		[newTimedGameButton addTarget:self action:@selector(newTimedGame:) forControlEvents:UIControlEventTouchUpInside];
 		[self addSubview:newTimedGameButton];
 		
 		SameMenuButton * scoresButton = [[SameMenuButton alloc] initWithFrame:CGRectMake(drawRect.origin.x + 30, 280, 200, 50)];
@@ -77,6 +77,25 @@
 - (void)newNormalGame:(id)sender
 {
 	NSLog(@"new normal game");
+	
+	SameView * sv = [[SameView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]];
+	sv.userInteractionEnabled = YES;
+	[[self window] addSubview:sv];
+	[[self window] sendSubviewToBack:sv];
+	
+	CABasicAnimation * fin = [CABasicAnimation animationWithKeyPath:@"opacity"];
+	fin.duration = 1.0;
+	fin.fromValue = [NSNumber numberWithFloat:1.0];
+	fin.toValue = [NSNumber numberWithFloat:0.0];
+	fin.removedOnCompletion = NO;
+	fin.fillMode  = kCAFillModeForwards;
+	fin.delegate = self;
+	[self.layer addAnimation:fin forKey:@"fin"];
+}
+
+- (void)newTimedGame:(id)sender
+{
+	NSLog(@"new timed game");
 	
 	SameView * sv = [[SameView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]];
 	sv.userInteractionEnabled = YES;

@@ -41,10 +41,9 @@
 	
 	UILabel * valueLabel, * scoreLabel;
 	SameHUD * hud;
-	
-	UIAcceleration * lastAcceleration;
-	int shakeCount;
 }
+
+- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event;
 
 - (void)removeTiles:(NSMutableArray*)t;
 
