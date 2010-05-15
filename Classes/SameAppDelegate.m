@@ -32,7 +32,7 @@
 
 @implementation SameAppDelegate
 
-@synthesize window, scores;
+@synthesize window, scores, timedScores;
 
 - (NSString *)pathForDataFile
 {
@@ -43,15 +43,17 @@
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application
 {
-    NSString * path = [self pathForDataFile];
     NSDictionary * rootObject;
     
     srand(time(NULL));
     
-    rootObject = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
+    rootObject = [NSKeyedUnarchiver unarchiveObjectWithFile:[self pathForDataFile]];
     scores = [[NSMutableArray alloc] initWithArray:[rootObject valueForKey:@"scores"]];
+    timedScores = [[NSMutableArray alloc] initWithArray:[rootObject valueForKey:@"timedScores"]];
     if(!scores)
         scores = [[NSMutableArray alloc] init];
+    if(!timedScores)
+        timedScores = [[NSMutableArray alloc] init];
     
     window = [[UIWindow alloc] initWithFrame:CGRectMake(0,0,320,480)];
     
@@ -65,15 +67,16 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
-	NSString * path = [self pathForDataFile];
-    
-	NSMutableDictionary * rootObject;
-	rootObject = [NSMutableDictionary dictionary];
-    
-	[rootObject setValue:scores forKey:@"scores"];
-	[NSKeyedArchiver archiveRootObject:rootObject toFile:path];
-	
-	[super dealloc];
+    NSString * path = [self pathForDataFile];
+
+    NSMutableDictionary * rootObject;
+    rootObject = [NSMutableDictionary dictionary];
+
+    [rootObject setValue:scores forKey:@"scores"];
+    [rootObject setValue:timedScores forKey:@"timedScores"];
+    [NSKeyedArchiver archiveRootObject:rootObject toFile:path];
+
+    [super dealloc];
 }
 
 - (void)dealloc

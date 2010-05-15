@@ -30,11 +30,12 @@
 
 @interface SameAppDelegate : NSObject <UIApplicationDelegate>
 {
-    NSMutableArray * scores;
+    NSMutableArray * scores, * timedScores;
     UIWindow * window;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow * window;
 @property (nonatomic, assign) NSMutableArray * scores;
+@property (nonatomic, assign) NSMutableArray * timedScores;
 
 @end

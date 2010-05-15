@@ -72,7 +72,6 @@ int rcompare(NSNumber * a, NSNumber * b, void * context)
             {
                 overallScore = (1.0 - timerView.percentage) / 0.001 / 30.0;
             }
-
         }
         else
         {
@@ -86,10 +85,22 @@ int rcompare(NSNumber * a, NSNumber * b, void * context)
         
         hud = [[SameHUD alloc] initWithFrame:CGRectInset([self bounds], 50, 75)];
         hud.delegate = self;
+        hud.timed = timed;
         [[self superview] addSubview:hud];
-
         
-        NSMutableArray * scores = [(id)[[UIApplication sharedApplication] delegate] scores];
+        if(timed && realTimer)
+        {
+            [realTimer invalidate];
+            realTimer = nil;
+        }
+        
+        NSMutableArray * scores;
+        
+        if(timed)
+            scores = [(id)[[UIApplication sharedApplication] delegate] timedScores];
+        else
+            scores = [(id)[[UIApplication sharedApplication] delegate] scores];
+
         
         [scores addObject:[NSNumber numberWithInt:overallScore]];
         [scores sortUsingFunction:&rcompare context:nil];
@@ -468,6 +479,7 @@ int rcompare(NSNumber * a, NSNumber * b, void * context)
     hud = nil;
     
     [self showGame];
+    [self setTimed:self.timed];
 }
 
 - (void)removeTiles:(NSMutableArray*)t

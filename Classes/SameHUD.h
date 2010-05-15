@@ -29,15 +29,18 @@
 
 @interface SameHUD : UIView
 {
-	UILabel * titleLabel, * scoreLabel, * hsLabel, * continueLabel;
-	UISegmentedControl * segmentedControl;
-	
-	id delegate;
+    UILabel * titleLabel, * scoreLabel, * hsLabel, * continueLabel;
+    UISegmentedControl * segmentedControl;
+
+    id delegate;
+
+    BOOL timed;
 }
 
 - (void)showHUDWithPoints:(int)points gameWon:(int)won;
 - (void)hideHUD:(id)sender;
 
 @property (nonatomic,assign) id delegate;
+@property (nonatomic,assign) BOOL timed;
 
 @end
