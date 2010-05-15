@@ -125,6 +125,10 @@ int rcompare(NSNumber * a, NSNumber * b, void * context)
         valueLabel.text = @"";
         scoreLabel.text = @"0 points";
     }
+    else
+    {
+        timerView.percentage = 1.0;
+    }
 }
 
 - (void)showGame
@@ -170,7 +174,7 @@ int rcompare(NSNumber * a, NSNumber * b, void * context)
         
         for(UIView * view in self.subviews)
         {
-            if(view != valueLabel && view != scoreLabel)
+            if(view != valueLabel && view != scoreLabel && view != timerView)
                 [view removeFromSuperview];
         }
         
