@@ -9,11 +9,11 @@
 /* Begin PBXBuildFile section */
 		1D3623260D0F684500981E51 /* SameAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* SameAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
-		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
-		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
-		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		354BC0FA119E147900C63BCE /* SameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 354BC0F9119E147900C63BCE /* SameViewController.m */; };
 		354BC183119E1CFA00C63BCE /* SameTimerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 354BC182119E1CFA00C63BCE /* SameTimerView.m */; };
+		356D73A0119E730D007E1920 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 356D739F119E730D007E1920 /* UIKit.framework */; };
+		356D73A4119E7313007E1920 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 356D73A3119E7313007E1920 /* Foundation.framework */; };
+		356D73A8119E7318007E1920 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 356D73A7119E7318007E1920 /* CoreGraphics.framework */; };
 		357A91DE0FF9DFD800DDA0A0 /* SameMenuButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 357A91DD0FF9DFD800DDA0A0 /* SameMenuButton.m */; };
 		357FF4990FF9D8B6005F2F0F /* SameMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 357FF4980FF9D8B6005F2F0F /* SameMenu.m */; };
 		357FF4DD0FF9DB39005F2F0F /* RoundedRect.m in Sources */ = {isa = PBXBuildFile; fileRef = 357FF4DC0FF9DB39005F2F0F /* RoundedRect.m */; };
@@ -30,18 +30,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* SameAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SameAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* SameAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SameAppDelegate.m; sourceTree = "<group>"; };
 		1D6058910D05DD3D006BFB54 /* Same.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Same.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* Same_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Same_Prefix.pch; sourceTree = "<group>"; };
 		354BC0F8119E147900C63BCE /* SameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SameViewController.h; sourceTree = "<group>"; };
 		354BC0F9119E147900C63BCE /* SameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SameViewController.m; sourceTree = "<group>"; };
 		354BC181119E1CFA00C63BCE /* SameTimerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SameTimerView.h; sourceTree = "<group>"; };
 		354BC182119E1CFA00C63BCE /* SameTimerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SameTimerView.m; sourceTree = "<group>"; };
+		356D739F119E730D007E1920 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		356D73A3119E7313007E1920 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		356D73A7119E7318007E1920 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		357A91DC0FF9DFD800DDA0A0 /* SameMenuButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SameMenuButton.h; sourceTree = "<group>"; };
 		357A91DD0FF9DFD800DDA0A0 /* SameMenuButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SameMenuButton.m; sourceTree = "<group>"; };
 		357FF4970FF9D8B6005F2F0F /* SameMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SameMenu.h; sourceTree = "<group>"; };
@@ -70,10 +70,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
-				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
-				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
 				35F036460FB3E839005DF6FB /* QuartzCore.framework in Frameworks */,
+				356D73A0119E730D007E1920 /* UIKit.framework in Frameworks */,
+				356D73A4119E7313007E1920 /* Foundation.framework in Frameworks */,
+				356D73A8119E7318007E1920 /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -153,9 +153,9 @@
 			isa = PBXGroup;
 			children = (
 				35F036450FB3E839005DF6FB /* QuartzCore.framework */,
-				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
-				1D30AB110D05D00D00671497 /* Foundation.framework */,
-				288765A40DF7441C002DB57D /* CoreGraphics.framework */,
+				356D739F119E730D007E1920 /* UIKit.framework */,
+				356D73A3119E7313007E1920 /* Foundation.framework */,
+				356D73A7119E7318007E1920 /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -238,6 +238,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Timothy Horton (P64967SW8S)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Timothy Horton (P64967SW8S)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -245,6 +247,8 @@
 				GCC_PREFIX_HEADER = Same_Prefix.pch;
 				INFOPLIST_FILE = "Same-Info.plist";
 				PRODUCT_NAME = Same;
+				PROVISIONING_PROFILE = "718D3131-40A1-463E-B4D5-7B0007B36120";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "718D3131-40A1-463E-B4D5-7B0007B36120";
 			};
 			name = Debug;
 		};
@@ -252,11 +256,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Timothy Horton (P64967SW8S)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Timothy Horton (P64967SW8S)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Same_Prefix.pch;
 				INFOPLIST_FILE = "Same-Info.plist";
 				PRODUCT_NAME = Same;
+				PROVISIONING_PROFILE = "718D3131-40A1-463E-B4D5-7B0007B36120";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "718D3131-40A1-463E-B4D5-7B0007B36120";
 			};
 			name = Release;
 		};
@@ -264,18 +272,20 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Timothy Horton (P64967SW8S)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Timothy Horton (P64967SW8S)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Timothy Horton";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Timothy Horton";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = "";
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
-				PROVISIONING_PROFILE = "718D3131-40A1-463E-B4D5-7B0007B36120";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "718D3131-40A1-463E-B4D5-7B0007B36120";
-				RUN_CLANG_STATIC_ANALYZER = YES;
-				SDKROOT = iphoneos3.0;
+				PROVISIONING_PROFILE = "D1159682-BF40-4299-A091-620DAE99F434";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D1159682-BF40-4299-A091-620DAE99F434";
+				RUN_CLANG_STATIC_ANALYZER = NO;
+				SDKROOT = iphoneos3.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -283,17 +293,19 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Timothy Horton (P64967SW8S)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Timothy Horton (P64967SW8S)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Timothy Horton";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Timothy Horton";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = "";
 				PREBINDING = NO;
-				PROVISIONING_PROFILE = "718D3131-40A1-463E-B4D5-7B0007B36120";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "718D3131-40A1-463E-B4D5-7B0007B36120";
-				RUN_CLANG_STATIC_ANALYZER = YES;
-				SDKROOT = iphoneos3.0;
+				PROVISIONING_PROFILE = "D1159682-BF40-4299-A091-620DAE99F434";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D1159682-BF40-4299-A091-620DAE99F434";
+				RUN_CLANG_STATIC_ANALYZER = NO;
+				SDKROOT = iphoneos3.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
