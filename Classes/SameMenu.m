@@ -60,7 +60,7 @@
         [newTimedGameButton addTarget:self action:@selector(newTimedGame:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:newTimedGameButton];
         
-        SameMenuButton * scoresButton = [[SameMenuButton alloc] initWithFrame:CGRectMake(drawRect.origin.x + 30, 280, 200, 50)];
+        /*SameMenuButton * scoresButton = [[SameMenuButton alloc] initWithFrame:CGRectMake(drawRect.origin.x + 30, 280, 200, 50)];
         scoresButton.backgroundColor = [UIColor clearColor];
         scoresButton.title = @"Scores";
         [scoresButton addTarget:self action:@selector(newNormalGame:) forControlEvents:UIControlEventTouchUpInside];
@@ -70,7 +70,7 @@
         preferencesButton.backgroundColor = [UIColor clearColor];
         preferencesButton.title = @"Settings";
         [preferencesButton addTarget:self action:@selector(newNormalGame:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:preferencesButton];
+        [self addSubview:preferencesButton];*/
     }
     return self;
 }
