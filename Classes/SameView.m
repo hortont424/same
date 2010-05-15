@@ -60,17 +60,34 @@ int rcompare(NSNumber * a, NSNumber * b, void * context)
     
     if(animCount == 0 && (([self gameWon] || [self gameCompleted]) && !hud))
     {
-        hud = [[SameHUD alloc] initWithFrame:CGRectInset([self bounds], 50, 75)];
-        hud.delegate = self;
-        [[self superview] addSubview:hud];
-        
         if([self gameWon])
         {
             overallScore += 1000;
             
             if(!timed)
+            {
                 scoreLabel.text = [NSString stringWithFormat:@"%d points", overallScore];
+            }
+            else
+            {
+                overallScore = (1.0 - timerView.percentage) / 0.001 / 30.0;
+            }
+
         }
+        else
+        {
+            if(timed)
+            {
+                [self shakeReload];
+                
+                return;
+            }
+        }
+        
+        hud = [[SameHUD alloc] initWithFrame:CGRectInset([self bounds], 50, 75)];
+        hud.delegate = self;
+        [[self superview] addSubview:hud];
+
         
         NSMutableArray * scores = [(id)[[UIApplication sharedApplication] delegate] scores];
         
