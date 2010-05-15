@@ -260,6 +260,9 @@ int rcompare(NSNumber * a, NSNumber * b, void * context)
 - (void)updateTimer:(id)stuff
 {
     timerView.percentage -= 0.001;
+    
+    if(timerView.percentage <= 0.0)
+        [self shakeReload];
 }
 
 - (NSMutableArray *)_tilesConnectedTo:(SameTile*)tile
@@ -532,7 +535,7 @@ int rcompare(NSNumber * a, NSNumber * b, void * context)
     
     for(UIView * view in self.subviews)
     {
-        if(view != valueLabel && view != scoreLabel)
+        if(view != valueLabel && view != scoreLabel && view != timerView)
             [view removeFromSuperview];
     }
     
