@@ -24,44 +24,38 @@
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import <UIKit/UIKit.h>
-#import "SameTile.h"
-#import "SameHUD.h"
 #import "SameTimerView.h"
+#import "RoundedRect.h"
 
-@interface SameView : UIView <UIAlertViewDelegate>
+@implementation SameTimerView
+
+
+- (id)initWithFrame:(CGRect)frame
 {
-    SameTile * tiles[9][12];
-    SameTile * allTiles[108];
-    
-    SameTile * lastTile;
-    
-    NSMutableArray * litTiles;
-    
-    int overallScore, animCount;
-    
-    UILabel * valueLabel, * scoreLabel;
-    SameHUD * hud;
-    
-    BOOL timed;
-    SameTimerView * timerView;
+	if (self = [super initWithFrame:frame])
+	{
+		self.userInteractionEnabled = NO;
+	}
+	return self;
 }
 
-- (void)removeTiles:(NSMutableArray*)t;
-
-- (void)animationStart;
-- (void)animationDone;
-
-- (BOOL)gameCompleted;
-- (BOOL)gameWon;
-
-- (void)initGame;
-
-- (void)dismissedHUD;
-
-- (void)shakeReload;
-
-@property (nonatomic,assign) BOOL timed;
+- (void)drawRect:(CGRect)rect
+{
+	CGContextRef context = UIGraphicsGetCurrentContext();
+	
+	CGRect drawRect = CGRectInset([self bounds], 3, 3);
+	
+	CGContextSaveGState(context);
+	
+	CGContextSetLineWidth(context, 2);
+	
+    CGContextSetRGBStrokeColor(context, 0.9, 0.9, 0.9, 0.5);
+    CGContextSetRGBFillColor(context, 0.2, 0.2, 0.2, 1.0);
+	
+	CGContextAddRoundedRect(context, drawRect, 10);
+	CGContextDrawPath(context, kCGPathFillStroke);
+	
+	CGContextRestoreGState(context);
+}
 
 @end
-

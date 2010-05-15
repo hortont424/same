@@ -25,43 +25,11 @@
  */
 
 #import <UIKit/UIKit.h>
-#import "SameTile.h"
-#import "SameHUD.h"
-#import "SameTimerView.h"
 
-@interface SameView : UIView <UIAlertViewDelegate>
+@interface SameTimerView : UIControl
 {
-    SameTile * tiles[9][12];
-    SameTile * allTiles[108];
-    
-    SameTile * lastTile;
-    
-    NSMutableArray * litTiles;
-    
-    int overallScore, animCount;
-    
-    UILabel * valueLabel, * scoreLabel;
-    SameHUD * hud;
-    
-    BOOL timed;
-    SameTimerView * timerView;
+
 }
 
-- (void)removeTiles:(NSMutableArray*)t;
-
-- (void)animationStart;
-- (void)animationDone;
-
-- (BOOL)gameCompleted;
-- (BOOL)gameWon;
-
-- (void)initGame;
-
-- (void)dismissedHUD;
-
-- (void)shakeReload;
-
-@property (nonatomic,assign) BOOL timed;
 
 @end
-
