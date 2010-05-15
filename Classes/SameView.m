@@ -40,6 +40,11 @@ int score_for_tiles(int n)
     return (n - 2) * (n - 2);
 }
 
+int timedcompare(NSNumber * a, NSNumber * b, void * context)
+{
+    return [a compare:b];
+}
+
 int rcompare(NSNumber * a, NSNumber * b, void * context)
 {
     return [b compare:a];
@@ -103,7 +108,11 @@ int rcompare(NSNumber * a, NSNumber * b, void * context)
 
         
         [scores addObject:[NSNumber numberWithInt:overallScore]];
-        [scores sortUsingFunction:&rcompare context:nil];
+        
+        if(timed)
+            [scores sortUsingFunction:&timedcompare context:nil];
+        else
+            [scores sortUsingFunction:&rcompare context:nil];
         
         if([scores count] > 5)
             [scores removeLastObject];
