@@ -45,6 +45,7 @@
     
     BOOL timed;
     SameTimerView * timerView;
+    NSTimer * realTimer;
 }
 
 - (void)removeTiles:(NSMutableArray*)t;

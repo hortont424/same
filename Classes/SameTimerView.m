@@ -29,7 +29,10 @@
 
 @implementation SameTimerView
 
-@synthesize percentage;
+- (float)percentage
+{
+    return percentage;
+}
 
 - (void)setPercentage:(float)inPercentage
 {
@@ -60,16 +63,16 @@
     CGContextSetRGBStrokeColor(context, 0.9, 0.9, 0.9, 0.5);
     CGContextSetRGBFillColor(context, 0.2, 0.2, 0.2, 1.0);
     
-    CGContextAddRoundedRect(context, drawRect, 10);
+    CGContextAddRoundedRect(context, drawRect, 5);
     CGContextDrawPath(context, kCGPathFillStroke);
     
     CGContextSetRGBFillColor(context, 0.8, 0.8, 0.8, 1.0);
     
     drawRect.size.width *= percentage;
     
-    if(drawRect.size.width > 10)
+    if(drawRect.size.width > 5)
     {
-        CGContextAddRoundedRect(context, drawRect, 10);
+        CGContextAddRoundedRect(context, drawRect, 5);
         CGContextDrawPath(context, kCGPathFill);
     }
     

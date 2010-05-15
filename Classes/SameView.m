@@ -68,7 +68,8 @@ int rcompare(NSNumber * a, NSNumber * b, void * context)
         {
             overallScore += 1000;
             
-            scoreLabel.text = [NSString stringWithFormat:@"%d points", overallScore];
+            if(!timed)
+                scoreLabel.text = [NSString stringWithFormat:@"%d points", overallScore];
         }
         
         NSMutableArray * scores = [(id)[[UIApplication sharedApplication] delegate] scores];
@@ -119,8 +120,11 @@ int rcompare(NSNumber * a, NSNumber * b, void * context)
         }
     }
     
-    valueLabel.text = @"";
-    scoreLabel.text = @"0 points";
+    if (!timed)
+    {
+        valueLabel.text = @"";
+        scoreLabel.text = @"0 points";
+    }
 }
 
 - (void)showGame
@@ -212,12 +216,6 @@ int rcompare(NSNumber * a, NSNumber * b, void * context)
         scoreLabel.font = [UIFont boldSystemFontOfSize:20];
         [self addSubview:scoreLabel];
         
-        if (self.timed)
-        {
-            timerView = [[SameTimerView alloc] initWithFrame:CGRectMake(50, 413, 100, 25)];
-            [self addSubview:timerView];
-        }
-        
         [self initGame];
         [self showGame];
         
@@ -238,11 +236,26 @@ int rcompare(NSNumber * a, NSNumber * b, void * context)
         timerView = nil;
     }
     
+    if (realTimer)
+    {
+        [realTimer invalidate];
+        [realTimer release];
+        realTimer = nil;
+    }
+    
     if (self.timed)
     {
-        timerView = [[SameTimerView alloc] initWithFrame:CGRectMake(135, 420, 170, 25)];
+        timerView = [[SameTimerView alloc] initWithFrame:CGRectMake(11, 420, 298, 25)];
+        realTimer = [NSTimer scheduledTimerWithTimeInterval:1./30. target:self selector:@selector(updateTimer:) userInfo:nil repeats:YES];
         [self addSubview:timerView];
+        timerView.percentage = 1.0;
+        scoreLabel.text = valueLabel.text = @"";
     }
+}
+
+- (void)updateTimer:(id)stuff
+{
+    timerView.percentage -= 0.001;
 }
 
 - (NSMutableArray *)_tilesConnectedTo:(SameTile*)tile
@@ -338,7 +351,9 @@ int rcompare(NSNumber * a, NSNumber * b, void * context)
     int x, y;
     
     for(y = 0; y < 12; y++)
+    {
         for(x = 0; x < 9; x++)
+        {
             if(tiles[x][y] && [tiles[x][y] state])
             {
                 NSMutableArray * tc = [self tilesConnectedTo:tiles[x][y]];
@@ -349,6 +364,8 @@ int rcompare(NSNumber * a, NSNumber * b, void * context)
                 }
                 [tc release];
             }
+        }
+    }
     
     return YES;
 }
@@ -501,7 +518,8 @@ int rcompare(NSNumber * a, NSNumber * b, void * context)
     
     overallScore += score_for_tiles([t count]);
     
-    scoreLabel.text = [NSString stringWithFormat:@"%d points",overallScore];
+    if(!timed)
+        scoreLabel.text = [NSString stringWithFormat:@"%d points",overallScore];
 }
 
 - (void)shakeReload
