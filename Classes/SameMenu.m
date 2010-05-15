@@ -167,8 +167,6 @@
     CGContextDrawPath(context, kCGPathStroke);
     
     CGContextRestoreGState(context);
-    
-    CGGradientRelease(myGradient);
 }
 
 @end

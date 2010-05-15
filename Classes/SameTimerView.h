@@ -28,8 +28,9 @@
 
 @interface SameTimerView : UIControl
 {
-
+    float percentage;
 }
 
+@property (nonatomic,assign) float percentage;
 
 @end

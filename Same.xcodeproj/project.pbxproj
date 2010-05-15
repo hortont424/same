@@ -264,16 +264,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Timothy Horton";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Timothy Horton";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Timothy Horton (P64967SW8S)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Timothy Horton (P64967SW8S)";
 				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
-				PROVISIONING_PROFILE = "E43F8DDB-D0FB-414D-98AF-783089DC2494";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E43F8DDB-D0FB-414D-98AF-783089DC2494";
+				PROVISIONING_PROFILE = "718D3131-40A1-463E-B4D5-7B0007B36120";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "718D3131-40A1-463E-B4D5-7B0007B36120";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos3.0;
 			};
@@ -283,13 +283,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Timothy Horton";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Timothy Horton (P64967SW8S)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Timothy Horton (P64967SW8S)";
 				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "34318C00-2F7B-4954-A2F2-3F74EE0685E9";
+				PROVISIONING_PROFILE = "718D3131-40A1-463E-B4D5-7B0007B36120";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "718D3131-40A1-463E-B4D5-7B0007B36120";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos3.0;
 			};

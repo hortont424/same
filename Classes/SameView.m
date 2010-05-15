@@ -240,7 +240,7 @@ int rcompare(NSNumber * a, NSNumber * b, void * context)
     
     if (self.timed)
     {
-        timerView = [[SameTimerView alloc] initWithFrame:CGRectMake(150, 420, 150, 25)];
+        timerView = [[SameTimerView alloc] initWithFrame:CGRectMake(135, 420, 170, 25)];
         [self addSubview:timerView];
     }
 }
@@ -314,7 +314,8 @@ int rcompare(NSNumber * a, NSNumber * b, void * context)
     [litTiles release];
     litTiles = nil;
     
-    valueLabel.text = @"";
+    if(!timed)
+        valueLabel.text = @"";
 }
 
 - (void)lightTiles:(NSMutableArray*)t
@@ -326,7 +327,8 @@ int rcompare(NSNumber * a, NSNumber * b, void * context)
         [tile light];
     }
     
-    valueLabel.text = [NSString stringWithFormat:@"+%d",score_for_tiles([t count])];
+    if(!timed)
+        valueLabel.text = [NSString stringWithFormat:@"+%d",score_for_tiles([t count])];
     
     litTiles = [t copy];
 }

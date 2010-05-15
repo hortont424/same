@@ -29,33 +29,51 @@
 
 @implementation SameTimerView
 
+@synthesize percentage;
+
+- (void)setPercentage:(float)inPercentage
+{
+    percentage = inPercentage;
+    
+    [self setNeedsDisplay];
+}
 
 - (id)initWithFrame:(CGRect)frame
 {
-	if (self = [super initWithFrame:frame])
-	{
-		self.userInteractionEnabled = NO;
-	}
-	return self;
+    if (self = [super initWithFrame:frame])
+    {
+        self.userInteractionEnabled = NO;
+    }
+    return self;
 }
 
 - (void)drawRect:(CGRect)rect
 {
-	CGContextRef context = UIGraphicsGetCurrentContext();
-	
-	CGRect drawRect = CGRectInset([self bounds], 3, 3);
-	
-	CGContextSaveGState(context);
-	
-	CGContextSetLineWidth(context, 2);
-	
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGRect drawRect = CGRectInset([self bounds], 3, 3);
+    
+    CGContextSaveGState(context);
+    
+    CGContextSetLineWidth(context, 2);
+    
     CGContextSetRGBStrokeColor(context, 0.9, 0.9, 0.9, 0.5);
     CGContextSetRGBFillColor(context, 0.2, 0.2, 0.2, 1.0);
-	
-	CGContextAddRoundedRect(context, drawRect, 10);
-	CGContextDrawPath(context, kCGPathFillStroke);
-	
-	CGContextRestoreGState(context);
+    
+    CGContextAddRoundedRect(context, drawRect, 10);
+    CGContextDrawPath(context, kCGPathFillStroke);
+    
+    CGContextSetRGBFillColor(context, 0.8, 0.8, 0.8, 1.0);
+    
+    drawRect.size.width *= percentage;
+    
+    if(drawRect.size.width > 10)
+    {
+        CGContextAddRoundedRect(context, drawRect, 10);
+        CGContextDrawPath(context, kCGPathFill);
+    }
+    
+    CGContextRestoreGState(context);
 }
 
 @end
