@@ -32,10 +32,10 @@
 	UIImage * redImage, * blueImage, * yellowImage, * greenImage;
 }
 
-@property (nonatomic,readonly) UIImage * redImage;
-@property (nonatomic,readonly) UIImage * blueImage;
-@property (nonatomic,readonly) UIImage * yellowImage;
-@property (nonatomic,readonly) UIImage * greenImage;
+@property (nonatomic,readonly,assign) UIImage * redImage;
+@property (nonatomic,readonly,assign) UIImage * blueImage;
+@property (nonatomic,readonly,assign) UIImage * yellowImage;
+@property (nonatomic,readonly,assign) UIImage * greenImage;
 
 + (SameTileImages*)shared;
 

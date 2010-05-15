@@ -40,7 +40,7 @@
 		
 		state = YES;
 		visited = NO;
-		color = arc4random() % 2;//3;
+		color = arc4random() % 3;
 		
 		switch(color)
 		{
